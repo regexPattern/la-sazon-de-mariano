@@ -21,7 +21,10 @@
       </div>
     </header>
 
-    <div id="pantalla-carga" class="contenedor">esta es mi pantalla de carga</div>
+    <div id="pantalla-carga" class="contenedor">
+      <h2>Cargando <span id="ellipsis-carga"></span></h2>
+      <img src="./static/img/pantalla-de-carga.gif" />
+    </div>
 
     <main id="contenedor-receta" class="contenedor">
       <div id="cabecera-receta">
@@ -86,11 +89,23 @@
         </section>
 
         <section id="instrucciones-receta">
-          <h2>Instrucciones</h2>
+          <h2>Pasos</h2>
         </section>
       </div>
+
+      <section id="comentarios-receta">
+        <h2>Comentarios</h2>
+        <div id="lista-comentarios"></div>
+        <form id="formulario-comentario">
+          <textarea
+            name="contenido"
+            placeholder="Agregá tus comentarios sobre la receta"
+          ></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
     </main>
 
-    <script src="./receta/index.js"></script>
+    <script src="./receta.js"></script>
   </body>
 </html>

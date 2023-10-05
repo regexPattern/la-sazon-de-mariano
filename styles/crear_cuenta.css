@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Roboto Slab";
   font-weight: 100 900;
-  src: url("./static/fonts/RobotoSlab-VariableFont_wght.ttf");
+  src: url("../static/fonts/RobotoSlab-VariableFont_wght.ttf");
   font-display: swap;
 }
 
@@ -19,7 +19,7 @@ html {
 }
 
 .bg-image {
-  background-image: url("./static/logo.jpeg");
+  background-image: url("../static/logo.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;

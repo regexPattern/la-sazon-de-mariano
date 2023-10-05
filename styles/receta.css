@@ -1,14 +1,14 @@
 @font-face {
   font-family: "Inter";
   font-weight: 100 900;
-  src: url("./static/fonts/Inter-VariableFont_slnt,wght.ttf");
+  src: url("../static/fonts/Inter-VariableFont_slnt,wght.ttf");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Roboto Slab";
   font-weight: 100 900;
-  src: url("./static/fonts/RobotoSlab-VariableFont_wght.ttf");
+  src: url("../static/fonts/RobotoSlab-VariableFont_wght.ttf");
   font-display: swap;
 }
 
@@ -82,6 +82,20 @@ header nav a:hover {
 }
 
 /* RECETA */
+
+#pantalla-carga {
+  margin: 16px;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  align-items: center;
+}
+
+#pantalla-carga > h2 {
+  font-size: 1.25rem;
+  font-weight: normal;
+  letter-spacing: -0.25px;
+}
 
 #contenedor-receta {
   display: none;
@@ -158,7 +172,8 @@ button#guardar-receta > svg {
   fill: transparent;
 }
 
-button#guardar-receta:hover, button#guardar-receta:active {
+button#guardar-receta:hover,
+button#guardar-receta:active {
   cursor: pointer;
 }
 
@@ -215,6 +230,32 @@ button#guardar-receta:hover, button#guardar-receta:active {
   margin-bottom: 0;
 }
 
+/* RECETA -> COMENTARIOS */
+
+#comentarios-receta {
+  margin-top: 16px;
+}
+
+.contenedor-comentario {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background-color: #f1f5f9;
+}
+
+textarea {
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+}
+
+textarea::placeholder {
+  font-family: "Inter", sans-serif;
+}
+
+/* MEDIA QUERIES */
+
 @media screen and (max-width: 1024px) {
   #contenedor-receta h1 {
     font-size: 2rem;
@@ -224,7 +265,7 @@ button#guardar-receta:hover, button#guardar-receta:active {
     font-size: 1.5rem;
   }
 
-  #descripcion-receta  {
+  #descripcion-receta {
     grid-template-columns: 1fr 2fr;
   }
 
