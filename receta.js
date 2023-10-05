@@ -1,6 +1,6 @@
 const pantallaCarga = document.getElementById("pantalla-carga");
 const ellipsisCarga = document.getElementById("ellipsis-carga");
-const contenedorReceta = document.getElementById("contenedor-receta");
+
 const ellipsisCargaInterval = setInterval(() => {
   const cantidadActualEllipsis =
     ellipsisCarga.textContent.match(/./g)?.length || 0;
@@ -12,42 +12,146 @@ const ellipsisCargaInterval = setInterval(() => {
   }
 }, 500);
 
-const botonGuardar = document.getElementById("guardar-receta");
-botonGuardar.addEventListener("click", () => {
-  botonGuardar.firstElementChild.textContent = "Guardada";
-  botonGuardar.lastElementChild.style.fill = "currentColor";
-});
+/**
+ * @typedef {Object} Receta
+ *
+ * @property {string} Receta.nombre
+ *
+ * @property {Object} Receta.publicacion
+ * @property {Object} Receta.publicacion.autor
+ * @property {string} Receta.publicacion.autor.nombre
+ * @property {string} Receta.publicacion.autor.perfil
+ * @property {Date} Receta.publicacion.fecha
+ *
+ * @property {Object} Receta.calificaciones
+ * @property {number} Receta.calificaciones.promedio
+ * @property {number} Receta.calificaciones.cantidad
+ *
+ * @property {string} Receta.imagen
+ * @property {string[]} Receta.ingredientes
+ * @property {string[]} Receta.pasos
+ * @property {string[]} Receta.comentarios
+ */
 
-const formularioComentario = document.getElementById("formulario-comentario");
+/* carga de datos */
+
+const contenedorReceta = document.getElementById("contenedor-receta");
+
+(async () => {
+  const receta = await obtenerDatosReceta();
+  actualizarPagina(receta);
+
+  pantallaCarga.remove();
+  clearInterval(ellipsisCargaInterval);
+  contenedorReceta.style.display = "block";
+})();
+
+/* handlers formulario comentarios */
+
+const formularioComentario = document.querySelector("form");
+
 formularioComentario.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const formData = new FormData(formularioComentario);
-  const contenido = formData.get("contenido");
+  const comentario = formData.get("contenido");
 
-  if (contenido.length) {
-    const listaComentarios = document.getElementById("lista-comentarios");
-    const contenedorComentario = document.createElement("div");
-    contenedorComentario.classList.add("contenedor-comentario");
-
-    const contenidoComentario = document.createElement("p");
-    contenidoComentario.textContent = contenido;
-
-    contenedorComentario.appendChild(contenidoComentario);
-    listaComentarios.appendChild(contenedorComentario);
+  if (comentario) {
+    formularioComentario.reset();
+    agregarElementoComentario(comentario);
   }
 });
 
-(async () => {
-  const receta = await obtenerDatosReceta();
-  actualizarPaginaReceta(receta);
+/* handlers boton guardar */
 
-  pantallaCarga.remove();
-  clearInterval(ellipsisCargaInterval);
+const svgGuardada = document.querySelector("#guardar-receta > svg");
 
-  contenedorReceta.style.display = "block";
-})();
+function actualizarSvgGuardada() {
+  if (window.localStorage.getItem("guardada") === "true") {
+    svgGuardada.style.fill = "currentColor";
+  } else {
+    svgGuardada.style.fill = "transparent";
+  }
+}
 
+actualizarSvgGuardada();
+
+const botonGuardar = document.getElementById("guardar-receta");
+
+botonGuardar.addEventListener("click", () => {
+  window.localStorage.setItem(
+    "guardada",
+    window.localStorage.getItem("guardada") === "true" ? "false" : "true",
+  );
+
+  actualizarSvgGuardada();
+});
+
+/**
+ * @param {Receta} receta
+ */
+function actualizarPagina(receta) {
+  /* resumen */
+
+  document.getElementById("nombre-receta").textContent = receta.nombre;
+  document.getElementById("nombre-autor-receta").textContent =
+    receta.publicacion.autor.nombre;
+  document.getElementById("fecha-registro-receta").textContent =
+    receta.publicacion.fecha.toDateString();
+  document.getElementById("cantidad-calificaciones").textContent =
+    receta.calificaciones.cantidad + " calificaciones";
+  document.getElementById("calificacion-numerica").textContent =
+    receta.calificaciones.promedio;
+  document.getElementById("imagen-receta").setAttribute("src", receta.imagen);
+
+  /* ingredientes */
+
+  const listaIngredientes = document.getElementById("lista-ingredientes");
+  for (const ingrediente of receta.ingredientes) {
+    const listItemIngrediente = document.createElement("li");
+    listItemIngrediente.textContent = ingrediente;
+    listaIngredientes.appendChild(listItemIngrediente);
+  }
+
+  /* pasos */
+
+  const parrafosInstrucciones = document.getElementById("instrucciones-receta");
+  for (const paso of receta.pasos) {
+    const parrafoInstruccion = document.createElement("p");
+    parrafoInstruccion.textContent = paso;
+    parrafosInstrucciones.appendChild(parrafoInstruccion);
+  }
+
+  /* comentarios */
+
+  for (const comentario of receta.comentarios) {
+    agregarElementoComentario(comentario);
+  }
+}
+
+// TODO: Eventualmente podemos tener una funcion que se encargue exclusivamente
+// de traer los comentarios de la receta, para hacer si poder hacer refresh
+// cuando agregamos uno.
+//
+const listaComentarios = document.getElementById("lista-comentarios");
+
+/**
+ * @param {string} comentario
+ */
+function agregarElementoComentario(comentario) {
+  const contenedorComentario = document.createElement("div");
+  contenedorComentario.classList.add("contenedor-comentario");
+
+  const contenidoComentario = document.createElement("p");
+  contenidoComentario.textContent = comentario;
+
+  contenedorComentario.appendChild(contenidoComentario);
+  listaComentarios.appendChild(contenedorComentario);
+}
+
+/**
+ * @returns Receta
+ */
 async function obtenerDatosReceta() {
   const parametrosUrl = new URLSearchParams(window.location.search);
   const codigoReceta = Number(parametrosUrl.get("codigo-receta"));
@@ -57,7 +161,10 @@ async function obtenerDatosReceta() {
   return {
     nombre: "Tacos al pastor",
     publicacion: {
-      autor: { nombre: "Carlos Castillo" },
+      autor: {
+        nombre: "Carlos Castillo",
+        perfil: "./index.html",
+      },
       fecha: new Date(Date.now()),
     },
     calificaciones: {
@@ -83,59 +190,9 @@ async function obtenerDatosReceta() {
       "Error porro veniam sapiente magni. Asperiores ea deserunt commodi, sapiente ducimus vero sed placeat perspiciatis? Id ea reprehenderit dolores incidunt sint praesentium nesciunt enim unde, officiis totam earum omnis quibusdam, numquam qui atque, ad corrupti necessitatibus amet. Nobis non asperiores laboriosam sunt reiciendis. Officia, corrupti. Necessitatibus similique iure magni saepe voluptatem aliquam iusto illo ad minima eveniet obcaecati delectus assumenda nihil praesentium, consectetur nobis! Architecto ad voluptatibus sunt aperiam maiores eum sint id facilis in. Voluptatibus nam ad alias repudiandae voluptatem distinctio ea vero dolore sed dolor magnam, expedita ut ratione odit, eveniet illum eius officia laudantium nemo, illo aspernatur nisi iste incidunt? Blanditiis, nobis! Quos maiores asperiores beatae, placeat eius odit cumque commodi aliquid non odio perferendis assumenda doloremque praesentium repellat neque facere! Et ad quibusdam repellat sequi necessitatibus vitae vel aut tenetur? Esse? Nobis odit ratione nam recusandae ab ducimus repellat dolores! Molestiae quasi illum ad aliquid illo incidunt nulla magni.",
     ],
     comentarios: [
-      {
-        publicacion: { autor: "Autor 1", fecha: new Date(Date.now()) },
-        contenido: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-      },
-      {
-        publicacion: { autor: "Autor 2", fecha: new Date(Date.now()) },
-        contenido:
-          "Aut quos laudantium ex minima repellendus, ullam provident, officiis natus perspiciatis pariatur temporibus, blanditiis aliquid consequatur odit deleniti a esse.",
-      },
-      {
-        publicacion: { autor: "Autor 3", fecha: new Date(Date.now()) },
-        contenido:
-          "Error porro veniam sapiente magni. Asperiores ea deserunt commodi, sapiente ducimus vero sed placeat perspiciatis? Id ea reprehenderit dolores incidunt sint praesentium nesciunt enim unde, officiis totam earum omnis quibusdam, numquam qui atque, ad corrupti necessitatibus amet.",
-      },
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      "Aut quos laudantium ex minima repellendus, ullam provident, officiis natus perspiciatis pariatur temporibus, blanditiis aliquid consequatur odit deleniti a esse.",
+      "Error porro veniam sapiente magni. Asperiores ea deserunt commodi, sapiente ducimus vero sed placeat perspiciatis? Id ea reprehenderit dolores incidunt sint praesentium nesciunt enim unde, officiis totam earum omnis quibusdam, numquam qui atque, ad corrupti necessitatibus amet.",
     ],
   };
-}
-
-function actualizarPaginaReceta(receta) {
-  document.getElementById("nombre-receta").textContent = receta.nombre;
-  document.getElementById("nombre-autor-receta").textContent =
-    receta.publicacion.autor.nombre;
-  document.getElementById("fecha-registro-receta").textContent =
-    receta.publicacion.fecha.toDateString();
-  document.getElementById("cantidad-calificaciones").textContent =
-    receta.calificaciones.cantidad + " calificaciones";
-  document.getElementById("calificacion-numerica").textContent =
-    receta.calificaciones.promedio;
-  document.getElementById("imagen-receta").setAttribute("src", receta.imagen);
-
-  const listaIngredientes = document.getElementById("lista-ingredientes");
-  for (const ingrediente of receta.ingredientes) {
-    const listItemIngrediente = document.createElement("li");
-    listItemIngrediente.textContent = ingrediente;
-    listaIngredientes.appendChild(listItemIngrediente);
-  }
-
-  const parrafosInstrucciones = document.getElementById("instrucciones-receta");
-  for (const paso of receta.pasos) {
-    const parrafoInstruccion = document.createElement("p");
-    parrafoInstruccion.textContent = paso;
-    parrafosInstrucciones.appendChild(parrafoInstruccion);
-  }
-
-  const listaComentarios = document.getElementById("lista-comentarios");
-  for (const comentario of receta.comentarios) {
-    const contenedorComentario = document.createElement("div");
-    contenedorComentario.classList.add("contenedor-comentario");
-
-    const contenidoComentario = document.createElement("p");
-    contenidoComentario.textContent = comentario.contenido;
-
-    contenedorComentario.appendChild(contenidoComentario);
-    listaComentarios.appendChild(contenedorComentario);
-  }
 }

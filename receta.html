@@ -10,7 +10,7 @@
     <header>
       <div class="contenedor">
         <img id="imagen-logo" src="./static/logo.jpeg" />
-        <span id="nombre-empresa">La sazon de Mariano</span>
+        <p id="nombre-empresa">La sazón de Mariano</p>
         <nav>
           <ul>
             <li><a href="./index.html">Inicio</a></li>
@@ -22,7 +22,7 @@
     </header>
 
     <div id="pantalla-carga" class="contenedor">
-      <h2>Cargando <span id="ellipsis-carga"></span></h2>
+      <h2>Cargando<span id="ellipsis-carga"></span></h2>
       <img src="./static/img/pantalla-de-carga.gif" />
     </div>
 
@@ -61,7 +61,6 @@
         </div>
 
         <button id="guardar-receta">
-          <span>Guardar</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -95,14 +94,15 @@
 
       <section id="comentarios-receta">
         <h2>Comentarios</h2>
-        <div id="lista-comentarios"></div>
-        <form id="formulario-comentario">
+        <form>
           <textarea
             name="contenido"
-            placeholder="Agregá tus comentarios sobre la receta"
+            placeholder="Agregá un comentarios sobre la receta."
           ></textarea>
-          <button type="submit">Submit</button>
+          <button type="submit">Comentar</button>
         </form>
+
+        <ul id="lista-comentarios"></ul>
       </section>
     </main>
 
