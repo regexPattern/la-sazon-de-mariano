@@ -1,15 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./receta.css" />
+    <link rel="stylesheet" href="./styles/receta.css" />
   </head>
   <body>
     <header>
       <div class="contenedor">
-        <img id="imagen-logo" src="./static/logo.png" />
+        <img id="imagen-logo" src="./static/logo.jpeg" />
         <span id="nombre-empresa">La sazon de Mariano</span>
         <nav>
           <ul>
@@ -21,14 +21,19 @@
       </div>
     </header>
 
-    <main id="contenedor-receta" class="contenedor">
-      <div id="metadata-receta">
-        <div id="resumen-receta">
-          <h1>Tacos al pastor</h1>
+    <div id="pantalla-carga" class="contenedor">esta es mi pantalla de carga</div>
 
-          <div id="estadisticas-receta">
+    <main id="contenedor-receta" class="contenedor">
+      <div id="cabecera-receta">
+        <div id="resumen-receta">
+          <h1 id="nombre-receta"></h1>
+
+          <div id="metadata-receta">
             <div id="registro-receta">
-              <span id="nombre-autor-receta">Agregado por Carlos Castillo</span>
+              <span>
+                Agregado por
+                <span id="nombre-autor-receta">Carlos Castillo</span>
+              </span>
               <span>&bull;</span>
               <span id="fecha-registro-receta">07 de Septiembre 2023</span>
             </div>
@@ -69,78 +74,23 @@
       </div>
 
       <div id="contenedor-imagen-receta">
-        <img id="imagen-receta" src="./static/img/tacos.png" />
+        <img id="imagen-receta" />
       </div>
 
       <div id="descripcion-receta">
         <section id="ingredientes-receta">
           <div>
             <h2>Ingredientes</h2>
-            <ul>
-              <li>Carne de cerdo 1/2 k</li>
-              <li>Cebolla 1/4 Unidad</li>
-              <li>Cilantro</li>
-              <li>Cebolla picada</li>
-              <li>Chiles Guajillo 2 Unidades</li>
-              <li>Chiles pasilla 2 Unidades</li>
-              <li>Tomates 4 Unidades</li>
-              <li>Ajo 1 Diente</li>
-              <li>Piña</li>
-              <li>Achiote 50 g</li>
-            </ul>
+            <ul id="lista-ingredientes"></ul>
           </div>
         </section>
 
         <section id="instrucciones-receta">
           <h2>Instrucciones</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet
-            corporis harum asperiores ex earum eligendi cupiditate saepe ea
-            debitis nemo ab dignissimos, aliquam id. Rem veniam provident sed
-            blanditiis suscipit? Amet ipsa voluptates molestias rem laboriosam
-            commodi accusamus sed sapiente, iste ab animi alias blanditiis ipsum
-            corrupti aliquam labore perferendis ad nesciunt perspiciatis quaerat
-            quis a. Similique ullam distinctio maxime. Expedita ad fugiat
-            similique veniam maiores maxime cum, repellat nulla.
-          </p>
-
-          <p>
-            Aut quos laudantium ex minima repellendus, ullam provident, officiis
-            natus perspiciatis pariatur temporibus, blanditiis aliquid
-            consequatur odit deleniti a esse. Incidunt vero distinctio placeat
-            dicta, tempore laudantium numquam sit quia libero harum architecto
-            error ullam quae? Nemo repudiandae eos adipisci minus, perferendis
-            aspernatur ullam voluptas illo officia ut, ducimus nostrum. Ullam
-            necessitatibus dignissimos, assumenda, possimus sed et similique
-            tenetur unde sint esse ducimus voluptates, quae est odit dolorem
-            laudantium atque. Iste ratione minima impedit provident, eius quidem
-            pariatur soluta distinctio. Corporis debitis nam eveniet consequatur
-            sequi culpa pariatur maiores, illum dolorem iusto laudantium,
-            repudiandae tenetur.
-          </p>
-
-          <p>
-            Error porro veniam sapiente magni. Asperiores ea deserunt commodi,
-            sapiente ducimus vero sed placeat perspiciatis? Id ea reprehenderit
-            dolores incidunt sint praesentium nesciunt enim unde, officiis totam
-            earum omnis quibusdam, numquam qui atque, ad corrupti necessitatibus
-            amet. Nobis non asperiores laboriosam sunt reiciendis. Officia,
-            corrupti. Necessitatibus similique iure magni saepe voluptatem
-            aliquam iusto illo ad minima eveniet obcaecati delectus assumenda
-            nihil praesentium, consectetur nobis! Architecto ad voluptatibus
-            sunt aperiam maiores eum sint id facilis in. Voluptatibus nam ad
-            alias repudiandae voluptatem distinctio ea vero dolore sed dolor
-            magnam, expedita ut ratione odit, eveniet illum eius officia
-            laudantium nemo, illo aspernatur nisi iste incidunt? Blanditiis,
-            nobis! Quos maiores asperiores beatae, placeat eius odit cumque
-            commodi aliquid non odio perferendis assumenda doloremque
-            praesentium repellat neque facere! Et ad quibusdam repellat sequi
-            necessitatibus vitae vel aut tenetur? Esse? Nobis odit ratione nam
-            recusandae ab ducimus repellat dolores! Molestiae quasi illum ad
-            aliquid illo incidunt nulla magni.
-          </p>
         </section>
       </div>
     </main>
+
+    <script src="./receta/index.js"></script>
   </body>
 </html>
