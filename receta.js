@@ -1,3 +1,22 @@
+/**
+ * @typedef {{
+ *  nombre: string,
+ *  publicacion: {
+ *    autor: {
+ *      nombre: string,
+ *      perfil: string,
+ *    },
+ *    fecha: Date,
+ *  },
+ *  imagen: string,
+ *  ingredientes: string[],
+ *  pasos: string[],
+ *  comentarios: string[],
+ * }} Receta
+ */
+
+/* PANTALLA DE CARGA */
+
 const pantallaCarga = document.getElementById("pantalla-carga");
 const ellipsisCarga = document.getElementById("ellipsis-carga");
 
@@ -12,142 +31,19 @@ const ellipsisCargaInterval = setInterval(() => {
   }
 }, 500);
 
-/**
- * @typedef {Object} Receta
- *
- * @property {string} Receta.nombre
- *
- * @property {Object} Receta.publicacion
- * @property {Object} Receta.publicacion.autor
- * @property {string} Receta.publicacion.autor.nombre
- * @property {string} Receta.publicacion.autor.perfil
- * @property {Date} Receta.publicacion.fecha
- *
- * @property {Object} Receta.calificaciones
- * @property {number} Receta.calificaciones.promedio
- * @property {number} Receta.calificaciones.cantidad
- *
- * @property {string} Receta.imagen
- * @property {string[]} Receta.ingredientes
- * @property {string[]} Receta.pasos
- * @property {string[]} Receta.comentarios
- */
-
-/* carga de datos */
+/* RENDER RECETA */
 
 const contenedorReceta = document.getElementById("contenedor-receta");
 
 (async () => {
   const receta = await obtenerDatosReceta();
+
   actualizarPagina(receta);
 
   pantallaCarga.remove();
   clearInterval(ellipsisCargaInterval);
   contenedorReceta.style.display = "block";
 })();
-
-/* handlers formulario comentarios */
-
-const formularioComentario = document.querySelector("form");
-
-formularioComentario.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const formData = new FormData(formularioComentario);
-  const comentario = formData.get("contenido");
-
-  if (comentario) {
-    formularioComentario.reset();
-    agregarElementoComentario(comentario);
-  }
-});
-
-/* handlers boton guardar */
-
-const svgGuardada = document.querySelector("#guardar-receta > svg");
-
-function actualizarSvgGuardada() {
-  if (window.localStorage.getItem("guardada") === "true") {
-    svgGuardada.style.fill = "currentColor";
-  } else {
-    svgGuardada.style.fill = "transparent";
-  }
-}
-
-actualizarSvgGuardada();
-
-const botonGuardar = document.getElementById("guardar-receta");
-
-botonGuardar.addEventListener("click", () => {
-  window.localStorage.setItem(
-    "guardada",
-    window.localStorage.getItem("guardada") === "true" ? "false" : "true",
-  );
-
-  actualizarSvgGuardada();
-});
-
-/**
- * @param {Receta} receta
- */
-function actualizarPagina(receta) {
-  /* resumen */
-
-  document.getElementById("nombre-receta").textContent = receta.nombre;
-  document.getElementById("nombre-autor-receta").textContent =
-    receta.publicacion.autor.nombre;
-  document.getElementById("fecha-registro-receta").textContent =
-    receta.publicacion.fecha.toDateString();
-  document.getElementById("cantidad-calificaciones").textContent =
-    receta.calificaciones.cantidad + " calificaciones";
-  document.getElementById("calificacion-numerica").textContent =
-    receta.calificaciones.promedio;
-  document.getElementById("imagen-receta").setAttribute("src", receta.imagen);
-
-  /* ingredientes */
-
-  const listaIngredientes = document.getElementById("lista-ingredientes");
-  for (const ingrediente of receta.ingredientes) {
-    const listItemIngrediente = document.createElement("li");
-    listItemIngrediente.textContent = ingrediente;
-    listaIngredientes.appendChild(listItemIngrediente);
-  }
-
-  /* pasos */
-
-  const parrafosInstrucciones = document.getElementById("instrucciones-receta");
-  for (const paso of receta.pasos) {
-    const parrafoInstruccion = document.createElement("p");
-    parrafoInstruccion.textContent = paso;
-    parrafosInstrucciones.appendChild(parrafoInstruccion);
-  }
-
-  /* comentarios */
-
-  for (const comentario of receta.comentarios) {
-    agregarElementoComentario(comentario);
-  }
-}
-
-// TODO: Eventualmente podemos tener una funcion que se encargue exclusivamente
-// de traer los comentarios de la receta, para hacer si poder hacer refresh
-// cuando agregamos uno.
-//
-const listaComentarios = document.getElementById("lista-comentarios");
-
-/**
- * @param {string} comentario
- */
-function agregarElementoComentario(comentario) {
-  const contenedorComentario = document.createElement("div");
-  contenedorComentario.classList.add("contenedor-comentario");
-
-  const contenidoComentario = document.createElement("p");
-  contenidoComentario.textContent = comentario;
-
-  contenedorComentario.appendChild(contenidoComentario);
-  listaComentarios.appendChild(contenedorComentario);
-}
 
 /**
  * @returns Receta
@@ -156,9 +52,9 @@ async function obtenerDatosReceta() {
   const parametrosUrl = new URLSearchParams(window.location.search);
   const codigoReceta = Number(parametrosUrl.get("codigo-receta"));
 
-  await new Promise((resolve) => setTimeout(resolve, 0));
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
-  return {
+  const receta = {
     nombre: "Tacos al pastor",
     publicacion: {
       autor: {
@@ -195,4 +91,123 @@ async function obtenerDatosReceta() {
       "Error porro veniam sapiente magni. Asperiores ea deserunt commodi, sapiente ducimus vero sed placeat perspiciatis? Id ea reprehenderit dolores incidunt sint praesentium nesciunt enim unde, officiis totam earum omnis quibusdam, numquam qui atque, ad corrupti necessitatibus amet.",
     ],
   };
+
+  if (codigoReceta === 1) {
+    receta.nombre = "Arroz con leche";
+    receta.imagen = "https://www.hogarmania.com/archivos/202203/arroz-con-leche-848x477x80xX.jpg";
+  } else if (codigoReceta === 2) {
+    receta.nombre = "Arroz con pollo";
+    receta.imagen = "https://cocina-casera.com/wp-content/uploads/2017/05/arroz_pollo.jpg";
+  }
+
+  return receta;
 }
+
+/** @param {Receta} receta */
+function actualizarPagina(receta) {
+  /* RESUMEN */
+
+  document.getElementById("nombre-receta").textContent = receta.nombre;
+  document.getElementById("nombre-autor-receta").textContent =
+    receta.publicacion.autor.nombre;
+  document.getElementById("fecha-registro-receta").textContent =
+    receta.publicacion.fecha.toDateString();
+  document.getElementById("cantidad-calificaciones").textContent =
+    receta.calificaciones.cantidad + " calificaciones";
+  document.getElementById("calificacion-numerica").textContent =
+    receta.calificaciones.promedio;
+  document.getElementById("imagen-receta").setAttribute("src", receta.imagen);
+
+  /* INGREDIENTES */
+
+  const listaIngredientes = document.getElementById("lista-ingredientes");
+  for (const ingrediente of receta.ingredientes) {
+    const listItemIngrediente = document.createElement("li");
+    listItemIngrediente.textContent = ingrediente;
+    listaIngredientes.appendChild(listItemIngrediente);
+  }
+
+  /* PASOS */
+
+  const parrafosInstrucciones = document.getElementById("instrucciones-receta");
+  for (const paso of receta.pasos) {
+    const parrafoInstruccion = document.createElement("p");
+    parrafoInstruccion.textContent = paso;
+    parrafosInstrucciones.appendChild(parrafoInstruccion);
+  }
+
+  /* COMENTARIOS */
+
+  const comentarios =
+    JSON.parse(window.localStorage.getItem("comentarios")) || [];
+  for (const comentario of comentarios) {
+    insertarElementoComentario(comentario);
+  }
+}
+
+/* COMENTARIOS */
+
+const formularioComentario = document.querySelector("form");
+
+formularioComentario.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(formularioComentario);
+  const comentario = formData.get("contenido");
+
+  if (comentario) {
+    formularioComentario.reset();
+    insertarElementoComentario(comentario);
+
+    const comentarios =
+      JSON.parse(window.localStorage.getItem("comentarios")) || [];
+    comentarios.push(comentario);
+    window.localStorage.setItem("comentarios", JSON.stringify(comentarios));
+  }
+});
+
+const listaComentarios = document.getElementById("lista-comentarios");
+
+/** @param {string} comentario */
+function insertarElementoComentario(comentario) {
+  const contenedorComentario = document.createElement("li");
+  contenedorComentario.classList.add("contenedor-comentario");
+
+  const contenidoComentario = document.createElement("p");
+  contenidoComentario.textContent = comentario;
+
+  contenedorComentario.appendChild(contenidoComentario);
+  listaComentarios.appendChild(contenedorComentario);
+
+  const elementosComentarios = listaComentarios.getElementsByTagName("li");
+  const contenidosComentarios = [];
+
+  for (const li of elementosComentarios) {
+    contenidosComentarios.push(li.textContent);
+  }
+}
+
+/* GUARDAR RECETA */
+
+const svgGuardada = document.querySelector("#guardar-receta > svg");
+
+function actualizarSvgGuardada() {
+  if (window.localStorage.getItem("guardada") === "true") {
+    svgGuardada.style.fill = "currentColor";
+  } else {
+    svgGuardada.style.fill = "transparent";
+  }
+}
+
+actualizarSvgGuardada();
+
+const botonGuardar = document.getElementById("guardar-receta");
+
+botonGuardar.addEventListener("click", () => {
+  window.localStorage.setItem(
+    "guardada",
+    window.localStorage.getItem("guardada") === "true" ? "false" : "true",
+  );
+
+  actualizarSvgGuardada();
+});
