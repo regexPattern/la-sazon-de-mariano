@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -14,12 +14,11 @@
         <img id="imagen-logo" src="./static/logo.jpeg" />
         <span id="nombre-empresa"> Sazon de Mariano</span>
 
-        <div class="topnav">
-          <form action="" class="search-bar">
-            <input type="text" placeholder="buscar receta" name="q" />
-            <button type="submit"><img src="lups.jpeg" /></button>
-          </form>
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="Buscar..." />
+          <button onclick="buscar()">Buscar</button>
         </div>
+        <div id="resultados"></div>
 
         <nav>
           <ul>
@@ -31,199 +30,24 @@
       </div>
     </header>
 
-    <div class="flex-container">
-      <div class="flex-box">
-        <div class="fotos">
-          <a href=""><img src="./static/img/argentina.jpeg" /></a>
-        </div>
-      </div>
+    <section class="slider-wrapper">
+      <button class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
 
-      <div class="flex-box">
-        <div class="fotos">
-          <a href=""><img src="./static/img/india.jpeg" /></a>
-        </div>
-      </div>
+      <button class="slide-arrow" id="slide-arrow-next">&#8250;</button>
+      <!--CATEGORIAS-->
+      <div class="cont-c"></div>
+    </section>
 
-      <div class="flex-box">
-        <div class="fotos">
-          <a href=""><img src="./static/img/mexico.jpeg" /></a>
-        </div>
-      </div>
-
-      <div class="flex-box">
-        <div class="fotos">
-          <a href=""><img src="./static/img/nicaragua.jpeg" /></a>
-        </div>
-      </div>
-
-      <div class="flex-box">
-        <div class="fotos">
-          <a href=""><img src="./static/img/usa.jpeg" /></a>
-        </div>
-      </div>
-
-      <div class="flex-box">
-        <div class="fotos">
-          <a href=""><img src="./static/img/ukas.jpeg" /></a>
-        </div>
-      </div>
-
-      <div class="flex-box">
-        <div class="fotos">
-          <a href=""><img src="./static/img/francia.jpeg" /></a>
-        </div>
-      </div>
-
-      <div class="flex-box">
-        <div class="fotos">
-          <a href=""><img src="./static/img/italia.jpeg" /></a>
-        </div>
-      </div>
-
-      <div class="flex-box">
-        <div class="fotos">
-          <a href=""><img src="./static/img/espana.jpeg" /></a>
-        </div>
-      </div>
-
-      <div class="flex-box">
-        <div class="fotos">
-          <a href=""><img src="./static/img/uzbe.jpeg" /></a>
-        </div>
-      </div>
-
-      <div class="flex-box">
-        <div class="fotos">
-          <a href=""><img src="./static/img/suecia.jpeg" /></a>
-        </div>
-      </div>
-
-      <div class="flex-box">
-        <div class="fotos">
-          <a href=""><img src="./static/img/japon.jpeg" /></a>
-        </div>
-      </div>
-      <div class="flex-box">
-        <div class="fotos">
-          <a href=""><img src="./static/img/china.jpeg" /></a>
-        </div>
-      </div>
+    <div class="flex-box1">
+      <span id="txt"> Más Populares </span>
     </div>
 
-    <div class="flex-container2">
-      <div class="flex-box2">
-        ...
-        <div class="fotos2">
-          <a href=""><img src="./static/img/comida_mex.jpeg" /></a>
-          <div class="texto">
-            <h1>Salsa</h1>
-            <p>
-              Texto muy largo con muchas palabras y cosas interesantesm,m mlkk
-              kfmbdkf sdvsgsgsgs fsf vsf gs fg dsf las que me informan la
-              importancia de comer sano y ponerme vacunas, todos los
-              diasmmmmmmmmmm mmmmmmmmmmmmmm mmmmm mmmmmmmmmmmm mmmmmmmmmmmmmmmmm
-              jjjjjjjjjjjjjjjjjjjjjjjjjjjjj jknvlsnfboisf nlgnsfij lwndoigsjgios
-              snfvoisjfvis ohoisfjgoisjgoijiofjrsiogdifogjdifg kjlfgndoibjdiofjb
-              lkxnfbvdj n jkni
-            </p>
-          </div>
-        </div>
-      </div>
+    <div class="flex-container2"></div>
 
-      <div class="flex-box2">
-        ...
-        <div class="fotos2">
-          <a href=""><img src="./static/img/arroz.jpeg" /></a>
-        </div>
-        <div class="texto">
-          <h1>Pollo al curry</h1>
-          <p>
-            Texto muy largo con muchas palabras y cosas interesantesm,m mlkk
-            kfmbdkf sdvsgsgsgs fsf vsf gs fg dsf las que me informan la
-            importancia de comer sano y ponerme vacunas, todos los
-            diasmmmmmmmmmmmmm mmmmmmmmmmm mmmmmmmmmmmmm mmm mmmmmmmmmmmmmmmmmm
-            jjjjjjjjjjjjjjjjjjjjjjjjjjjjj jknvlsnfboisf nlgnsfij lwndoigsjgios
-            snfvoisjfvis ohoisfjgoisjgoijiofjrsiogdifogjdifg kjlfgndoibjdiofjb
-            lkxnfbvdj n jkni
-          </p>
-        </div>
-      </div>
-      <div class="flex-box2">
-        ...
-        <div class="fotos2">
-          <a href=""><img src="./static/img/hot_dogs.jpeg" /></a>
-        </div>
-        <div class="texto">
-          <h1>Panchitos</h1>
-          <p>
-            Texto muy largo con muchas palabras y cosas interesantesm,m mlkk
-            kfmbdkf sdvsgsgsgs fsf vsf gs fg dsf las que me informan la
-            importancia de comer sano y ponerme vacunas, todos los diasmmmmmmmmm
-            mmmmmmmmmmmmmmm mmmmmmmmmm mmmmmmmm mmmmmmmmmmmmmmm
-            jjjjjjjjjjjjjjjjjjjjjjjjjjjjj jknvlsnfboisf nlgnsfij lwndoigsjgios
-            snfvoisjfvis ohoisfjgoisjgoijiofjrsiogdifogjdifg kjlfgndoibjdiofjb
-            lkxnfbvdj n jkni
-          </p>
-        </div>
-      </div>
-      <div class="flex-box2">
-        ...
-        <div class="fotos2">
-          <a href=""><img src="./static/img/brochetas.jpeg" /></a>
-        </div>
-        <div class="texto">
-          <h1>chanchitos</h1>
-          <p>
-            Texto muy largo con muchas palabras y cosas interesantesm,m mlkk
-            kfmbdkf sdvsgsgsgs fsf vsf gs fg dsf las que me informan la
-            importancia de comer sano y ponerme vacunas, todos los diasmmmmmm
-            mmmmmmmmmm mmmmmmmm mmmmmmmmmmmm mmmmmmmmmmmmmmmmmmmmmm
-            jjjjjjjjjjjjjjjjjjjjjjjjjjjjj jknvlsnfboisf nlgnsfij lwndoigsjgios
-            snfvoisjfvis ohoisfjgoisjgoijiofjrsiogdifogjdifg kjlfgndoibjdiofjb
-            lkxnfbvdj n jkni
-          </p>
-        </div>
-      </div>
+    <!--RECETAS-->
+    <div class="cont-r"></div>
 
-      <div class="flex-box2">
-        ...
-        <div class="fotos2">
-          <a href=""><img src="./static/img/brochetas.jpeg" /></a>
-        </div>
-
-        <div class="texto">
-          <h1>chanchitos</h1>
-          <p>
-            Texto muy largo con muchas palabras y cosas interesantesm,m mlkk
-            kfmbdkf sdvsgsgsgs fsf vsf gs fg dsf las que me informan la
-            importancia de comer sano y ponerme vacunas, todos los
-            diasmmmmmmmmmmmmmmm mmmmmmmmm mmmmmmmmmmmmmmmmmm mmmmmmmmmmmmmmmm
-            jjjjjjjjjjjjjjjjjjjjjjjjjjjjj jknvlsnfboisf nlgnsfij lwndoigsjgios
-            snfvoisjfvis ohoisfjgoisjgoijiofjrsiogdifogjdifg kjlfgndoibjdiofjb
-            lkxnfbvdj n jkni
-          </p>
-        </div>
-      </div>
-
-      <div class="flex-box2">
-        ...
-        <div class="fotos2">
-          <a href=""><img src="./static/img/brochetas.jpeg" /></a>
-        </div>
-
-        <div class="texto">
-          <h1>chanchitos</h1>
-          <p>
-            Texto muy largo con muchas palabras y cosas interesantesm,m mlkk
-            kfmbdkf sdvsgsgsgs fsf vsf gs fg dsf las que me informan la
-            importancia de comer sano y ponerme vacunas, todos los diasmmmmmmmm
-            mmmmmmmmmmmmmmmm mmmmmmmmmm mmmmmmmm mmmmmmmmmmmmmmmm
-            jjjjjjjjjjjjjjjjjjjjjjjjjjjjj jknvlsnfboisf nlgnsfij lwndoigsjgios
-            snfvoisjfvis ohoisfjgoisjgoijiofjrsiogdifogjdifg kjlfgndoibjdiofjb
-            lkxnfbvdj n jkni
-          </p>
-        </div>
-      </div>
-    </div>
+    <script src="db.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>

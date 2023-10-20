@@ -142,22 +142,6 @@ header nav a:hover {
   color: #334155;
 }
 
-#calificacion-receta {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-#cantidad-calificaciones {
-  text-decoration: underline;
-}
-
-#calificacion-receta svg {
-  width: 24px;
-  height: 24px;
-  fill: #fde047;
-}
-
 #guardar-receta {
   padding: 12px;
   display: flex;
