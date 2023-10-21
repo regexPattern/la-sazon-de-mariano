@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="crear_receta.css"> <!-- Relaciona o enlaza este archivo html con el 01.css-->
+    <title>Sazón de Mariano</title>
+    <link rel="icon" href="MARIANO.png">
+</head>
+<body>
+    <header> 
+        <div class = "contenedor">
+            <img id= "logo" src="MARIANO.png">
+            <span id="nombre-empresa">Sazón de Mariano</span>
+            <nav>
+                <ul>
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/explorar">Explorar</a></li>
+                    <li><a href="/ingresar">Ingresar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="bg-image">
+
+    <div class="functionofpage">
+        <b>Publicar Receta</b>
+    </div>
+
+    <div class="formularioreceta">
+
+    <form action="prueba.php" method="get">
+        <label for="nom02">Nombre del Plato:</label><br>
+        <input type="text" name="nombreplato" id="nom02"><br>
+        
+        <label for="descrip">Breve descripción del Plato:</label><br>
+        <input type="text" name="recetadescrip" id="descrip"><br>
+
+        <label for="arch02">Agregar Imagen del Plato:</label><br>
+        <input type="file" name="archivoplato" id="arch02"/><br><br>
+        
+        <label for="selLoc">Pais del Origen:</label><br>
+        <select id="selLoc" name="localidad" title="Seleccione...">
+            <option value="0" disabled selected>Seleccionar..</option>
+            <option value="1">Argentina</option>
+            <option value="2">Brazil</option>
+            <option value="3">Bolivia</option>
+            <option value="4">Chile</option>
+            <option value="5">Ecuador</option>
+            <option value="6">España</option>
+            <option value="7">México</option>
+            <option value="8">Nicaragua</option>
+            <option value="9">Polonia</option>
+            <option value="10">Suecia</option>
+        </select>
+        <br><br> 
+        <!-- 
+        <label for="descrip">Ingrediente 1 y cantidad </label><br>
+        <input type="text" name="recetadescrip" id="descrip"><br>
+        -->
+        <div class="Categorias">
+        <fieldset class="fs">
+            <legend>Categorias:</legend>
+            <input type="checkbox" id="chk01"name="vegetariano"/>
+            <label for="chk01">Vegetariano</label>
+            <input type="checkbox" id="chk02" name="vegano" />
+            <label for="chk02">Vegano</label>
+            <input type="checkbox" id="chk03" name="pescetariano" />
+            <label for="chk03">Pescetariano</label> 
+            <input type="checkbox" id="chk04" name="sintacc" />
+            <label for="chk04">Sin TACC</label> 
+         </fieldset>
+        </div>
+        
+        <fieldset class="condiciones">
+            <legend></legend>
+            <input type="checkbox" id="chk00"name="terminos" /> 
+            <label for="chk00">   Acepto los términos y condiciones del publicación en el sitio web</label>
+         </fieldset>
+        
+        </div>
+        
+        <div class="buttons">
+            <input type="submit"  value="Publicar">
+            <input type="button" value="Ayuda">
+            <input type="reset"  value="Cancelar">
+        </div>
+
+    </form>
+    </div>
+</body>
+</html>
