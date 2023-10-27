@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="/static/img/logo.png" />
+    <title>Inicio | La Sazón de Mariano</title>
+    <link
+      rel="stylesheet"
+      href="/static/css/comun.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/static/css/index.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="contenedor">
+        <img
+          id="imagen-logo"
+          src="/static/img/logo.png"
+        />
+        <span id="nombre-empresa">La sazón de Mariano</span>
+
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="Buscar..." />
+          <button onclick="buscar()">Buscar</button>
+        </div>
+        <div id="resultados"></div>
+
+        <nav>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/">Explorar</a></li>
+            <li><a href="/crear-cuenta">Ingresar</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section class="slider-wrapper">
+      <button class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
+
+      <button class="slide-arrow" id="slide-arrow-next">&#8250;</button>
+      <!--CATEGORIAS-->
+      <div class="cont-c">
+        {% for pais in paises %}
+        <a href="/explorar?query={{ pais['nombre'].lower() }}" class="flex-box">
+          <div class="fotos">
+            <img
+              src="{{ '/static/img/paises/' + pais['imagen'] }}"
+            />
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <div class="flex-box1">
+      <span id="txt"> Más Populares </span>
+    </div>
+
+    <div class="flex-container2"></div>
+
+    <!--RECETAS-->
+    <div class="cont-r">
+      {% for receta in recomendaciones %}
+      <a href="/receta/{{receta['id']}}" class="flex-box2 texto">
+        <img
+          src="{{ 'static/img/recetas/' + receta['imagen'] }}"
+          class="fotos2"
+        />
+        <h1>{{ receta['nombre'] }}</h1>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          Necessitatibus rem blanditiis culpa fuga voluptatum error voluptates
+          dolor, tempore voluptas dolorum doloremque id unde iure esse aliquam
+          eius cupiditate dignissimos ut?
+        </p>
+      </a>
+      {% endfor %}
+    </div>
+
+    <script src="/static/js/index.js"></script>
+  </body>
+</html>

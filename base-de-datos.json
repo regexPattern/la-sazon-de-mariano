@@ -1,0 +1,261 @@
+{
+	"usuario": {
+		"nombre": "Francisco",
+		"apellido": "Hernández",
+		"mail": "francisco@hernandez.com",
+		"imagen": "",
+		"receta_creadas": [],
+		"recetas_favoritas": [
+			{
+				"id": 1,
+				"autor": {
+					"id": 1,
+					"nombre": "Carlos Castillo"
+				},
+				"nombre": "Arroz Caldoso",
+				"etiquetas": [
+					"ajo",
+					"arroz",
+					"cebolla",
+					"tomate"
+				],
+				"imagen": "arroz-caldoso.jpeg",
+				"ingredientes": [
+					"2 pechugas de pollo, cortadas en trozos",
+					"1 cebolla, picada",
+					"2 dientes de ajo, picados",
+					"1 pimiento rojo, cortado en trozos",
+					"1 tomate maduro, picado",
+					"1 taza de arroz",
+					"4 tazas de caldo de pollo",
+					"Aceite de oliva, sal y pimienta a gusto",
+					"Un puñado de perejil fresco picado (opcional)"
+				],
+				"pasos": [
+					"En una olla, calentar un poco de aceite a fuego medio-alto. Agregar el pollo y cocinar hasta que esté dorado por todos lados. Retirar de la olla y reservar.",
+					"En la misma olla, añadir la cebolla, el ajo y el pimiento rojo. Cocinar hasta que estén tiernos. Agregar el tomate y cocinar por unos minutos hasta que se ablande.",
+					"Añadir el arroz y mezclar bien con el sofrito. Verter el caldo de pollo en la olla y llevar a ebullición.",
+					"Reducir el fuego a medio-bajo y cocinar durante 15-20 minutos o hasta que el arroz esté tierno y el caldo haya adquirido una textura caldosa.",
+					"Volver a incorporar el pollo a la olla y cocinar por unos minutos más hasta que esté bien caliente. Sazonar con sal y pimienta al gusto.",
+					"Servir el arroz caldoso con pollo caliente. Añadir un poco de perejil fresco picado por encima."
+				]
+			},
+			{
+				"id": 2,
+				"autor": {
+					"id": 2,
+					"nombre": "Virginia Yunes"
+				},
+				"nombre": "Plato Poke",
+				"etiquetas": [
+					"arroz",
+					"cebolla",
+					"palta",
+					"pepino"
+				],
+				"imagen": "plato-poke.jpeg",
+				"ingredientes": [
+					"450 gr de pescado fresco (atún, salmón u otro de tu elección)",
+					"200 gr de arroz blanco hervido",
+					"2 cucharadas de salsa de soja",
+					"1 cucharada de aceite de sésamo",
+					"1 cucharadita de ajonjolí tostado",
+					"1 cucharadita de cebolla verde",
+					"1 cucharadita de algas marinas",
+					"1/2 palta (aguacate)",
+					"Rodajas de pepino fresco"
+				],
+				"pasos": [
+					"Cortar el pescado en cubos uniformes y colocarlos en un bol.",
+					"En un bol pequeño mezclar la salsa de soja y el aceite de sésamo para marinar el pescado.",
+					"Verter sobre los cubos de pescado y mezclar suavemente. Refrigerar 15-20 minutos para que el pescado absorba los sabores.",
+					"Acomodar el arroz con el pescado sin mezclarlos. Agregar el ajonjolí, la cebolla verde picada y las algas marinas.",
+					"Antes de servir agregar cubos de palta y rodajas de pepino. Se puede mezclar suavemente o servir así para que el comensal lo haga."
+				]
+			}
+		]
+	},
+	"paises": [
+		{
+			"nombre": "Argentina",
+			"imagen": "argentina.jpeg"
+		},
+		{
+			"nombre": "China",
+			"imagen": "china.jpeg"
+		},
+		{
+			"nombre": "España",
+			"imagen": "españa.jpeg"
+		},
+		{
+			"nombre": "Francia",
+			"imagen": "francia.jpeg"
+		},
+		{
+			"nombre": "India",
+			"imagen": "india.jpeg"
+		},
+		{
+			"nombre": "Italia",
+			"imagen": "italia.jpeg"
+		},
+		{
+			"nombre": "Japón",
+			"imagen": "japón.jpeg"
+		},
+		{
+			"nombre": "México",
+			"imagen": "méxico.jpeg"
+		},
+		{
+			"nombre": "Nicaragua",
+			"imagen": "nicaragua.jpeg"
+		},
+		{
+			"nombre": "Suecia",
+			"imagen": "suecia.jpeg"
+		},
+		{
+			"nombre": "UK",
+			"imagen": "uk.jpeg"
+		},
+		{
+			"nombre": "USA",
+			"imagen": "usa.jpeg"
+		},
+		{
+			"nombre": "Uzbekistan",
+			"imagen": "uzbekistan.jpeg"
+		}
+	],
+	"recomendaciones": [
+		{
+			"id": 1,
+			"autor": {
+				"id": 1,
+				"nombre": "Carlos Castillo"
+			},
+			"nombre": "Arroz Caldoso",
+			"etiquetas": [
+				"ajo",
+				"arroz",
+				"cebolla",
+				"tomate"
+			],
+			"imagen": "arroz-caldoso.jpeg",
+			"ingredientes": [
+				"2 pechugas de pollo, cortadas en trozos",
+				"1 cebolla, picada",
+				"2 dientes de ajo, picados",
+				"1 pimiento rojo, cortado en trozos",
+				"1 tomate maduro, picado",
+				"1 taza de arroz",
+				"4 tazas de caldo de pollo",
+				"Aceite de oliva, sal y pimienta a gusto",
+				"Un puñado de perejil fresco picado (opcional)"
+			],
+			"pasos": [
+				"En una olla, calentar un poco de aceite a fuego medio-alto. Agregar el pollo y cocinar hasta que esté dorado por todos lados. Retirar de la olla y reservar.",
+				"En la misma olla, añadir la cebolla, el ajo y el pimiento rojo. Cocinar hasta que estén tiernos. Agregar el tomate y cocinar por unos minutos hasta que se ablande.",
+				"Añadir el arroz y mezclar bien con el sofrito. Verter el caldo de pollo en la olla y llevar a ebullición.",
+				"Reducir el fuego a medio-bajo y cocinar durante 15-20 minutos o hasta que el arroz esté tierno y el caldo haya adquirido una textura caldosa.",
+				"Volver a incorporar el pollo a la olla y cocinar por unos minutos más hasta que esté bien caliente. Sazonar con sal y pimienta al gusto.",
+				"Servir el arroz caldoso con pollo caliente. Añadir un poco de perejil fresco picado por encima."
+			]
+		},
+		{
+			"id": 2,
+			"autor": {
+				"id": 2,
+				"nombre": "Virginia Yunes"
+			},
+			"nombre": "Plato Poke",
+			"etiquetas": [
+				"arroz",
+				"cebolla",
+				"palta",
+				"pepino"
+			],
+			"imagen": "plato-poke.jpeg",
+			"ingredientes": [
+				"450 gr de pescado fresco (atún, salmón u otro de tu elección)",
+				"200 gr de arroz blanco hervido",
+				"2 cucharadas de salsa de soja",
+				"1 cucharada de aceite de sésamo",
+				"1 cucharadita de ajonjolí tostado",
+				"1 cucharadita de cebolla verde",
+				"1 cucharadita de algas marinas",
+				"1/2 palta (aguacate)",
+				"Rodajas de pepino fresco"
+			],
+			"pasos": [
+				"Cortar el pescado en cubos uniformes y colocarlos en un bol.",
+				"En un bol pequeño mezclar la salsa de soja y el aceite de sésamo para marinar el pescado.",
+				"Verter sobre los cubos de pescado y mezclar suavemente. Refrigerar 15-20 minutos para que el pescado absorba los sabores.",
+				"Acomodar el arroz con el pescado sin mezclarlos. Agregar el ajonjolí, la cebolla verde picada y las algas marinas.",
+				"Antes de servir agregar cubos de palta y rodajas de pepino. Se puede mezclar suavemente o servir así para que el comensal lo haga."
+			]
+		},
+		{
+			"id": 3,
+			"autor": {
+				"id": 3,
+				"nombre": "Francisco Hernandez"
+			},
+			"nombre": "Burrate Italiana",
+			"etiquetas": [
+				"albahaca",
+				"queso",
+				"tomate"
+			],
+			"imagen": "burrata-italiana.jpeg",
+			"ingredientes": [
+				"1 burrata fresca",
+				"Tomates cherry (aproximadamente 1 taza)",
+				"Hojas de albahaca fresca",
+				"Aceite de oliva virgen extra",
+				"Vinagre balsámico",
+				"Sal y pimienta a gusto"
+			],
+			"pasos": [
+				"Lavar los tomates cherry y cortarlos por la mitad. Lavar y secar las hojas de albahaca fresca. Colocar todo en un bol.",
+				"Abrir la burrata con cuidado y colocar en el centro del bol sobre los tomates y la albahaca.",
+				"Con un cuchillo realizar un pequeño corte en la burrata para que la crema del interior comience a derramarse sobre los tomates.",
+				"Regar la ensalada con un buen chorro de aceite de oliva virgen extra y un toque de vinagre (aceto) balsámico.",
+				"Salpimentar a gusto. Servir de inmediato mientras la burrata está fresca y cremosa."
+			]
+		},
+		{
+			"id": 4,
+			"autor": {
+				"id": 4,
+				"nombre": "Samantha Johansson"
+			},
+			"nombre": "Birria de Res",
+			"etiquetas": [
+				"ajo"
+			],
+			"imagen": "birria-de-res.jpeg",
+			"ingredientes": [
+				"1 kg de carne de res",
+				"4 chiles guajillo secos",
+				"2 chiles ancho secos",
+				"2 dientes de ajo",
+				"1 cucharadita de comino molido",
+				"1/2 cucharadita de orégano seco",
+				"1/4 de cucharadita de clavo molido",
+				"4 tazas de caldo de res (o agua)",
+				"Sal a gusto"
+			],
+			"pasos": [
+				"Limpiar bien los chiles guajillo y ancho. Abrirlos y ponerlos en un bol con agua caliente para que se hidraten 15-20 minutos. Escurrir y reservar el agua.",
+				"Colocar en una licuadora los chiles hidratados, los dientes de ajo, el comino, el orégano y el clavo molido. Agregar un poco del agua de remojo de los chiles y licuar hasta obtener una pasta suave.",
+				"En un bol grande, colocar cada pieza de carne y untarla con la pasta de chiles y especias. Cubrir el recipiente y refrigerar 2 horas o toda la noche.",
+				"En una olla grande, calentar un poco de aceite a fuego medio. Sellar los trozos de carne hasta que estén dorados parejo.",
+				"Agregar el caldo de res (o agua) y un poco de sal. Llevar a ebullición, reducir el fuego a bajo y tapar la olla. Cocinar 2-3 horas hasta que la carne esté tierna y se deshaga fácilmente.",
+				"Servir la birria de res caliente en platos individuales, acompañada de tortillas calientes, cebolla picada, cilantro y limón."
+			]
+		}
+	]
+}

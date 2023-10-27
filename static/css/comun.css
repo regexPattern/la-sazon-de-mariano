@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Inter";
+  font-weight: 100 900;
+  src: url("/static/fonts/Inter-VariableFont_slnt,wght.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto Slab";
+  font-weight: 100 900;
+  src: url("/static/fonts/RobotoSlab-VariableFont_wght.ttf");
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}

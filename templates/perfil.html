@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" href="/static/img/logo.png" />
+	<title>{{ usuario["nombre"] }} | La Sazón de Mariano</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/perfil.css" />
+</head>
+
+<body>
+	<div>
+		<h1>Mi perfil</h1>
+	</div>
+	<div class="perfil">
+		<img class="imagen-perfil" src="/static/img/nota_food-network-estrena-locos-x-el-asado.jpeg" />
+		<h3 class="nombre">{{ usuario["nombre"] }}</h3>
+		<h3 class="apellido">{{ usuario["apellido"] }}</h3>
+		<h3 class="email">{{ usuario["mail"] }}</h3>
+	</div>
+	<div>
+		<h1>Recetas favoritas</h1>
+	</div>
+	<div class="lista-alimentos">
+		{% for receta in usuario["recetas_favoritas"] %}
+		<div>
+			<img class="imagen-alimento" src="{{ '/static/img/recetas/' + receta['imagen'] }}" />
+			<h3 class="alimento">{{ receta["nombre"] }}</h3>
+		</div>
+		{% endfor %}
+	</div>
+</body>
+
+</html>
