@@ -1,61 +1,30 @@
-import json
-from flask import Flask, request, render_template
+import logging
+from flask import Flask
+
+from lib import base_de_datos, router
 
 
-app = Flask(__name__)
+CONFIGURACION_CONEXION = {
+    "host": "localhost",
+    "user": "user",
+    "password": "password",
+    "database": "recetario"
+}
 
 
-with open("base-de-datos.json") as archivo:
-    base_de_datos = json.load(archivo)
+logging.basicConfig(level=logging.DEBUG)
 
 
-@app.route("/")
-def inicio():
-    # TODO: Eventualmente esto va a salir de la DB
-    paises = base_de_datos["paises"]
-    recomendaciones = base_de_datos["recomendaciones"]
+def main():
+    app = Flask(__name__, static_folder="static", template_folder="templates")
+    app.config["SECRET_KEY"] = "SOsVMlbxQFy5LsbG0pUmXQ6PxxGHEcoO6BFoSyLXufyRL5TrQ9xfNRc27rjCIH3hAFu3yGaqXG1Kxba0EZfsGsJgUw0Jjbt2Agbc"
 
-    return render_template("index.html", paises=paises, recomendaciones=recomendaciones)
+    conexion = base_de_datos.crear_conexion(**CONFIGURACION_CONEXION)
+    logging.info("Conexión establecida con la base de datos")
 
-
-@app.route("/explorar")
-def explorar():
-    args = request.args or 0
-    return render_template("explorar.html", query=args["query"])
-
-
-@app.route("/receta/<int:id>")
-def receta(id):
-    # TODO: Eventualmente esto va a salir de la DB
-    recetas = [receta for receta in base_de_datos["recomendaciones"]
-               if receta["id"] == id]
-
-    if len(recetas) == 0:
-        return render_template("404.html")
-    else:
-        return render_template("receta.html", receta=recetas[0])
-
-
-@app.route("/crear-cuenta")
-def crear_cuenta():
-    return render_template("crear-cuenta.html")
-
-
-@app.route("/cuenta-creada")
-def cuenta_creada():
-    return render_template("cuenta-creada.html")
-
-
-@app.route("/crear-receta")
-def crear_receta():
-    return render_template("crear-receta.html")
-
-
-@app.route("/perfil")
-def perfil():
-    usuario = base_de_datos["usuario"]
-    return render_template("perfil.html", usuario=usuario)
+    router.init(app, conexion)
+    app.run("0.0.0.0", 5000, debug=True)
 
 
 if __name__ == "__main__":
-    app.run("0.0.0.0", 5000, debug=True)
+    main()

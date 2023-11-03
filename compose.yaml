@@ -1,0 +1,11 @@
+name: la-sazon-de-mariano
+services:
+  base-de-datos:
+    build: .
+    environment:
+      - MARIADB_USER=user
+      - MARIADB_PASSWORD=password
+      - MARIADB_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=recetario
+    ports:
+      - 3306:3306
