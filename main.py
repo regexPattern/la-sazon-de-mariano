@@ -13,7 +13,11 @@ CONFIGURACION_CONEXION = {
 }
 
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(
+    level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+logging.getLogger("werkzeug").disabled = True
 
 
 def main():
