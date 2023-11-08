@@ -1,3 +1,4 @@
+from flask import render_template
 import lib.controller as controller
 
 # TODO: Realmente no me gusta agregar esta indireccion en el router, hace las
@@ -10,19 +11,18 @@ def configurar(app):
     def inicio():
         return controller.inicio()
 
-    @app.route("/buscar", methods=["GET", "POST"])
+    @app.route("/buscar")
     def buscar():
-        return controller.buscar()
+        return render_template("buscar.html")
 
     @app.route("/signup", methods=["GET", "POST"])
     def signup():
-        return controller.signup()
+        return render_template("signup.html")
 
     @app.route("/signin")
     def signin():
-        return ""
+        return render_template("signin.html")
 
     @app.route("/crear-receta", methods=["GET", "POST"])
     def crear_receta():
-        # TODO: return controller.crear_receta()
-        return ""
+        return render_template("crear-receta.html")
