@@ -4,14 +4,13 @@ import lib.model as model
 
 
 def inicio():
-    recetas = model.obtener_ultimas_recetas()
+    recetas = model.ultimas_recetas()
     params = {"recetas": recetas}
     return render_template("index.html", params=params)
 
 
 def buscar():
     usuarios = model.obtener_resultados_busqueda_usuario(request.form["query"])
-    print(usuarios)
     return ""
 
 

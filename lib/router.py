@@ -1,5 +1,9 @@
 import lib.controller as controller
 
+# TODO: Realmente no me gusta agregar esta indireccion en el router, hace las
+# cosas mas dificiles de entender en mi opinion. Habria que ver si prescindimos
+# del controller mas bien.
+
 
 def configurar(app):
     @app.route("/")
@@ -22,4 +26,3 @@ def configurar(app):
     def crear_receta():
         # TODO: return controller.crear_receta()
         return ""
-        

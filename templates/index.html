@@ -66,12 +66,8 @@
 
     <!--RECETAS-->
     <div class="cont-r">
-      {% for receta in recomendaciones %}
+      {% for receta in params.recetas %}
       <a href="/receta/{{receta['id']}}" class="flex-box2 texto">
-        <img
-          src="{{ 'static/img/recetas/' + receta['imagen'] }}"
-          class="fotos2"
-        />
         <h1>{{ receta['nombre'] }}</h1>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit.
