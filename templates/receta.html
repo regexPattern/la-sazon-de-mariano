@@ -34,7 +34,7 @@
 					<div id="registro-receta">
 						<span>
 							Agregado por
-							<span id="nombre-autor-receta">{{ receta["autor"]["nombre"] }}</span>
+							<span id="nombre-autor-receta">{{ receta["nombre_usuario"] }}</span>
 						</span>
 					</div>
 				</div>
@@ -58,7 +58,7 @@
 					<h2>Ingredientes</h2>
 					<ul id="lista-ingredientes">
 						{% for ingrediente in receta["ingredientes"] -%}
-						<li>{{ ingrediente }}</li>
+              <li>{{ ingrediente["nombre"] }} - {{ ingrediente["cantidad"] }}</li>
 						{% endfor %}
 					</ul>
 				</div>
@@ -66,9 +66,7 @@
 
 			<section id="instrucciones-receta">
 				<h2>Pasos</h2>
-				{% for paso in receta["pasos"] -%}
-				<p>{{ paso }}</p>
-				{% endfor %}
+				<p>{{ receta["pasos"] }}</p>
 			</section>
 		</div>
 

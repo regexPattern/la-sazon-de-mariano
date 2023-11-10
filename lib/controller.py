@@ -16,8 +16,9 @@ def buscar():
 
 def receta(codigo):
     receta = model.obtener_receta(codigo)
+    receta["ingredientes"] = model.obtener_ingredientes_de_receta(codigo)
     params = {"receta": receta}
-    return render_template("receta.html", params=params)
+    return render_template("receta.html", receta=receta)
 
 
 def signup():
