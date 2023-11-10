@@ -9,10 +9,13 @@ Este es un proyecto grupal, sin embargo yo soy el único autor de los commits po
 ## Carlos
 
 - Autorizacion de los usuarios y el panel de control del admin.
+- Funcionalidad de comentarios de cada receta.
 
 ### Francisco
 
 - Pagina de perfil de usuario.
+- Manejar la subida de archivos al crear una receta y al crear un usuario.
+- Crear funcinalidad para que el usuario edite sus datos.
 
 ### Virginia
 
@@ -22,3 +25,4 @@ Este es un proyecto grupal, sin embargo yo soy el único autor de los commits po
 ### Samantha
 
 - Conetar el formulario de creacion de usuario con el backend y la base de datos (esta parte ya casi esta). Hay que manejar el tema de los redirects, especialmente el de la pantalla de usuario creado, hay que tener en cuenta el timeout para el confetti.
+- Generar el listado de paises al momento de crear una cuenta de manera dinamica, lo mismo para las categorias de las recetas, o si no ofrecer una opcion para crear una categoria.

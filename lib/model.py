@@ -86,10 +86,6 @@ def select_usuarios_buscados(nombre_usuario):
     return sql_seleccionar(query, valores)
 
 
-class RegistroNoEncontrado(Exception):
-    pass
-
-
 def usuario_insert(datos_usuario):
     query = """
         INSERT INTO usuarios
