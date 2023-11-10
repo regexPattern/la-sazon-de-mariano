@@ -18,24 +18,29 @@ class Conexion:
         return Conexion.__instancia
 
 
-def seleccionar(query, valores = None):
+class RegistroNoEncontrado(Exception):
+    pass
+
+
+def seleccionar(query, values=None):
     conexion = Conexion.obtener_instancia()
     try:
-        cursor = conexion.cursor()
-        cursor.execute(query, valores)
+        cursor = conexion.cursor(dictionary=True)
+        cursor.execute(query, values)
         logging.debug(cursor.statement)
-        return cursor.fetchall()
+        filas = cursor.fetchall()
+        return filas
     except mysql.connector.Error as e:
         conexion.rollback()
         logging.error(e)
         raise e
 
 
-def ejecutar(query, valores):
+def ejecutar(query, values):
     conexion = Conexion.obtener_instancia()
     try:
-        cursor = conexion.cursor()
-        cursor.execute(query, valores)
+        cursor = conexion.cursor(dictionary=True)
+        cursor.execute(query, values)
         logging.debug(cursor.statement)
         conexion.commit()
     except mysql.connector.Error as e:

@@ -1,12 +1,23 @@
-from flask import redirect, render_template, request, request_tearing_down
+from flask import redirect, render_template, request, session
 
 import lib.model as model
+from lib import base_de_datos
 
 
+def con_pagina_404(route_handler):
+    def wrapper(*args, **kwargs):
+        try:
+            return route_handler(*args, **kwargs)
+        except base_de_datos.RegistroNoEncontrado:
+            return render_template("404.html")
+
+    return wrapper
+
+
+@con_pagina_404
 def inicio():
     recetas = model.ultimas_recetas()
-    params = {"recetas": recetas}
-    return render_template("index.html", params=params)
+    return render_template("index.html", recetas=recetas)
 
 
 def buscar():
@@ -14,11 +25,34 @@ def buscar():
     return ""
 
 
-def receta(codigo):
-    receta = model.obtener_receta(codigo)
-    receta["ingredientes"] = model.obtener_ingredientes_de_receta(codigo)
-    params = {"receta": receta}
-    return render_template("receta.html", receta=receta)
+@con_pagina_404
+def receta(id_receta):
+    receta = model.obtener_receta(id_receta)
+    ingredientes = model.select_ingredientes_receta(id_receta)
+    return render_template("receta.html", receta=receta, ingredientes=ingredientes)
+
+
+@con_pagina_404
+def perfil_get(id_usuario):
+    usuario = model.select_usuario(id_usuario)
+    return render_template("perfil.html", usuario=usuario)
+
+
+def perfil_post(id_usuario):
+    nuevos_datos_usuario = {
+        "nombre": request.form["nombre"],
+    }
+
+    model.update_usuario(id_usuario, nuevos_datos_usuario)
+
+    # TODO: Aca deberia retornar el status o algo asi... o lanzar un exception
+
+
+def signin_post():
+    nombre_usuario = request.form["nombre_usuario"]
+    password = request.form["password"]
+
+    session["id_usuario"] = model.select_id_usuario(nombre_usuario, password)
 
 
 def signup():
@@ -34,7 +68,7 @@ def signup():
         }
 
         try:
-            model.crear_usuario(usuario)
+            model.insert_usuario(usuario)
             return redirect("/signin")
         except:
             # TODO: Realmente no estamos haciendo nada con este mensaje de error en la pantalla.

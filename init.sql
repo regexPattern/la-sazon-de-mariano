@@ -3,7 +3,7 @@ CREATE TABLE
     id INT NOT NULL AUTO_INCREMENT,
     nombre TEXT NOT NULL,
     nombre_usuario TEXT UNIQUE NOT NULL,
-    email TEXT UNIQUE NOT NULL,
+    email TEXT NOT NULL,
     contrasena TEXT NOT NULL,
     imagen TEXT UNIQUE NOT NULL,
     PRIMARY KEY (id)
@@ -26,7 +26,7 @@ CREATE TABLE
     imagen TEXT UNIQUE NOT NULL,
     pais INT NOT NULL,
     descripcion TEXT NOT NULL,
-    instrucciones TEXT NOT NULL,
+    pasos TEXT NOT NULL,
     INDEX (id_usuario),
     INDEX (pais),
     FOREIGN KEY (id_usuario) REFERENCES usuarios (id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -141,7 +141,7 @@ INSERT INTO
     imagen,
     pais,
     descripcion,
-    instrucciones
+    pasos
   )
 VALUES
   (

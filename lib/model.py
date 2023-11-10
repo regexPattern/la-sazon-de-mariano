@@ -7,47 +7,28 @@ def ultimas_recetas():
         FROM recetas;
     """
 
-    def registro_a_receta(registro):
-        return {
-            "id": registro[0],
-            "nombre": registro[1],
-            "imagen": registro[2],
-            "descripcion": registro[3],
-        }
-
-    registros = base_de_datos.seleccionar(query)
-    recetas = map(registro_a_receta, registros)
-    return list(recetas)
+    return base_de_datos.seleccionar(query)
 
 
-def obtener_receta(codigo):
+def obtener_receta(id_receta):
     query = """
-        SELECT r.nombre, u.id, u.nombre, r.fecha_publicacion, r.imagen, r.descripcion, r.instrucciones
+        SELECT r.nombre nombre, u.id id_usuario, u.nombre nombre_usuario, r.fecha_publicacion, r.imagen, r.descripcion, r.pasos
         FROM recetas AS r
         INNER JOIN usuarios AS u
         ON r.id_usuario = u.id
         WHERE r.id = %s;
     """
 
-    values = (codigo,)
+    values = (id_receta,)
+    filas_recetas = base_de_datos.seleccionar(query, values)
 
-    def registro_a_receta(registro):
-        return {
-            "nombre": registro[0],
-            "id_usuario": registro[1],
-            "nombre_usuario": registro[2],
-            "fecha_publicacion": registro[3],
-            "imagen": registro[4],
-            "descripcion": registro[5],
-            "pasos": registro[6],
-        }
+    if len(filas_recetas) == 0:
+        raise base_de_datos.RegistroNoEncontrado("Receta no encontrada")
 
-    registros = base_de_datos.seleccionar(query, values)
-    receta = next(map(registro_a_receta, registros))
-    return receta
+    return filas_recetas[0]
 
 
-def obtener_ingredientes_de_receta(codigo):
+def select_ingredientes_receta(id_receta):
     query = """
         SELECT i.nombre, ir.cantidad
         FROM ingredientes AS i
@@ -55,20 +36,43 @@ def obtener_ingredientes_de_receta(codigo):
         ON ir.id_ingrediente = i.id AND ir.id_receta = %s;
     """
 
-    values = (codigo,)
+    values = (id_receta,)
 
-    def registro_a_ingrediente(registro):
-        return {
-            "nombre": registro[0],
-            "cantidad": registro[1],
-        }
-
-    registros = base_de_datos.seleccionar(query, values)
-    ingredientes = map(registro_a_ingrediente, registros)
-    return list(ingredientes)
+    return base_de_datos.seleccionar(query, values)
 
 
-def obtener_resultados_busqueda_usuario(nombre_usuario):
+def select_usuario(id_usuario):
+    query = """
+        SELECT id, nombre, imagen
+        FROM usuarios
+        WHERE id = %s;
+    """
+
+    values = (id_usuario,)
+
+    perfiles = base_de_datos.seleccionar(query, values)
+
+    if len(perfiles) == 0:
+        raise base_de_datos.RegistroNoEncontrado
+
+    return perfiles[0]
+
+
+def select_id_usuario(nombre_usuario, password):
+    query = """
+        SELECT id
+        FROM usuarios
+        WHERE nombre_usuario = %s AND contrasena = %s;
+    """
+
+    values = (nombre_usuario, password)
+
+    ids_usuarios = base_de_datos.seleccionar(query, values)
+    return ids_usuarios[0]
+
+
+
+def select_usuarios_buscados(nombre_usuario):
     query = """
         SELECT id, nombre
         FROM usuarios
@@ -80,7 +84,7 @@ def obtener_resultados_busqueda_usuario(nombre_usuario):
     return base_de_datos.seleccionar(query, valores)
 
 
-def crear_usuario(usuario):
+def insert_usuario(datos_usuario):
     query = """
         INSERT INTO usuarios
         (nombre, nombre_usuario, email, contrasenia, imagen)
@@ -89,11 +93,23 @@ def crear_usuario(usuario):
     """
 
     valores = (
-        usuario["nombre"],
-        usuario["nombre-usuario"],
-        usuario["email"],
-        usuario["contrasenia"],
-        usuario["imagen"],
+        datos_usuario["nombre"],
+        datos_usuario["nombre-usuario"],
+        datos_usuario["email"],
+        datos_usuario["contrasenia"],
+        datos_usuario["imagen"],
     )
 
     base_de_datos.ejecutar(query, valores)
+
+
+def update_usuario(id_usuario, nuevos_datos_usuario):
+    query = """
+        UPDATE usuarios
+        SET nombre = %s
+        WHERE id = %s;
+    """
+
+    values = (nuevos_datos_usuario["nombre"], id_usuario)
+
+    base_de_datos.ejecutar(query, values)

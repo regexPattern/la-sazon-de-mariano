@@ -1,25 +1,160 @@
+@font-face {
+  font-family: "Roboto Slab";
+  font-weight: 100 900;
+  src: url("../static/fonts/RobotoSlab-VariableFont_wght.ttf");
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
 body {
-  font-family: tahoma;
+  background-color: rgb(218, 245, 218);
+}
+
+body,
+html {
+  height: 100%;
+}
+
+header {
+  padding: 10px 0px;
+  border-bottom: 1px solid #cbd5e1;
+  background-color: #ffffffdd;
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+}
+
+.contenedor {
+  max-width: 1280px;
+  padding: 0px 16px;
+  margin: auto;
+}
+
+.formularioreceta {
+  margin: 50px;
+  margin-bottom: 0px;
+}
+
+header > div {
+  height: 100%;
+  display: flex;
   align-items: center;
 }
 
+#logo {
+  height: 70px;
+  object-fit: cover;
+}
+
+#nombre-empresa {
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-family: "Roboto Slab", serif;
+  color: red;
+  margin-left: 8px;
+  letter-spacing: -0.5px;
+}
+
+header nav {
+  margin-left: auto;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+}
+
+header nav a {
+  text-decoration: none;
+  font-family: "Roboto Slab", serif;
+  color: #334155;
+  font-weight: 500;
+}
+
+.perfil {
+  background: white;
+  height: 260px;
+  width: 85%;
+  color: rgb(0, 0, 0);
+  font-size: 13px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 20px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .imagen-perfil {
-  height: 240px;
-  width: 240px;
+  float: left;
+  height: 200px;
+  width: 200px;
+  margin: 30px;
+  border-radius: 180px;
+}
+
+
+.nueva-receta {
+  float: right;
+  height: 200px;
+  margin: 200px;
   margin: 10px;
+}
+
+.nueva-receta img {
+  float: right;
+  height: 150px;
+  margin: 150px;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.nueva-receta a:link {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.nueva-receta a:hover {
+  color: blue;
+  background-color: transparent;
+  text-decoration: none;
 }
 
 .lista-alimentos {
-  width: fit-content;
-  border: 1px solid red;
-  margin: auto;
-  display: flex;
-  background-color: rgb(175, 130, 255);
-  padding: 10px;
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  flex-direction: row;
 }
 
-.imagen-alimento {
-  height: 240px;
-  width: 240px;
+.alimento {
+  background: white;
+  color: rgb(0, 0, 0);
+  font-size: 13px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 20px;
   margin: 10px;
+}
+
+.imagen-alimento img {
+  height: 240px;
+  width: 90%;
+  object-fit: cover;
+}
+
+.imagen-alimento a:link {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
 }
