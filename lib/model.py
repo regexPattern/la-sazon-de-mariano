@@ -1,27 +1,37 @@
 import lib.base_de_datos as base_de_datos
 
+def _registro_a_receta(registro):
+    return {
+        "id": registro[0],
+        "nombre": registro[1],
+        "imagen": registro[2],
+        "descripcion": registro[3],
+    }
+
 
 def ultimas_recetas():
-    # TODO: Todavia nos falta determinar que recetas son las que vamos a
-    # presentar en la pagina de inicio (calculo que las ultimas n agregadas).
-    # Luego tendremos que adaptar la query segun sea acorde.
-
     query = """
         SELECT id, nombre, imagen, descripcion
         FROM receta;
     """
 
-    def registro_a_receta(registro):
-        return {
-            "id": registro[0],
-            "nombre": registro[1],
-            "imagen": registro[2],
-            "descripcion": registro[3],
-        }
-
     registros = base_de_datos.seleccionar(query)
-    recetas = map(registro_a_receta, registros)
+    recetas = map(_registro_a_receta, registros)
     return list(recetas)
+
+
+def obtener_receta(codigo):
+    query = """
+        SELECT id, nombre, imagen, descripcion
+        FROM receta
+        WHERE receta.id = %s;
+    """
+
+    values = (codigo,)
+
+    registros = base_de_datos.seleccionar(query, values)
+    receta = next(map(_registro_a_receta, registros))
+    return receta
 
 
 def obtener_resultados_busqueda_usuario(nombre_usuario):

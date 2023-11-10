@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request
+from flask import redirect, render_template, request, request_tearing_down
 
 import lib.model as model
 
@@ -10,8 +10,14 @@ def inicio():
 
 
 def buscar():
-    usuarios = model.obtener_resultados_busqueda_usuario(request.form["query"])
+    # usuarios = model.obtener_resultados_busqueda_usuario(request.form["query"])
     return ""
+
+
+def receta(codigo):
+    receta = model.obtener_receta(codigo)
+    params = {"receta": receta}
+    return render_template("receta.html", params=params)
 
 
 def signup():

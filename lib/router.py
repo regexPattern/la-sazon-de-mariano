@@ -15,6 +15,10 @@ def configurar(app):
     def buscar():
         return render_template("buscar.html")
 
+    @app.route("/receta/<codigo>")
+    def receta(codigo):
+        return controller.receta(codigo)
+
     @app.route("/signup", methods=["GET", "POST"])
     def signup():
         return render_template("signup.html")
