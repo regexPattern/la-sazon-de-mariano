@@ -5,15 +5,15 @@ CREATE TABLE
     nombre_usuario TEXT UNIQUE NOT NULL,
     email TEXT UNIQUE NOT NULL,
     contrasena TEXT NOT NULL,
-    imagen TEXT NOT NULL,
+    imagen TEXT UNIQUE NOT NULL,
     PRIMARY KEY (id)
   );
 
 CREATE TABLE
   IF NOT EXISTS paises (
     id INT NOT NULL AUTO_INCREMENT,
-    nombre TEXT NOT NULL,
-    imagen TEXT NOT NULL,
+    nombre TEXT UNIQUE NOT NULL,
+    imagen TEXT UNIQUE NOT NULL,
     PRIMARY KEY (id)
   );
 
@@ -23,7 +23,7 @@ CREATE TABLE
     nombre TEXT NOT NULL,
     fecha_publicacion DATE NOT NULL,
     id_usuario INT NOT NULL,
-    imagen TEXT NOT NULL,
+    imagen TEXT UNIQUE NOT NULL,
     pais INT NOT NULL,
     descripcion TEXT NOT NULL,
     instrucciones TEXT NOT NULL,
@@ -119,7 +119,7 @@ VALUES
 INSERT INTO
   paises (nombre, imagen)
 VALUES
-  ('rgentina', '1.jpeg'),
+  ('Argentina', '1.jpeg'),
   ('India', '2.jpeg'),
   ('Mexico', '3.jpeg'),
   ('Nicaragua', '4.jpeg'),
@@ -148,7 +148,7 @@ VALUES
     'Arroz caldozo',
     '2023/11/03',
     1,
-    '1.jpeg',
+    'arroz-caldoso.jpeg',
     1,
     '¿Quieres disfrutar de un arroz caldoso casero? Con esta receta podrás deleitarte con este plato tradicional lleno de sabor y textura.',
     'En una olla, calentar un poco de aceite a fuego medio-alto. Agregar el pollo y cocinar hasta que esté dorado por todos lados.
