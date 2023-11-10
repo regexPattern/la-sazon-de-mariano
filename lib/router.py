@@ -1,10 +1,7 @@
-from flask import redirect, render_template, request, session
+from flask import redirect, render_template, request
 
 import lib.controller as controller
-
-# TODO: Realmente no me gusta agregar esta indireccion en el router, hace las
-# cosas mas dificiles de entender en mi opinion. Habria que ver si prescindimos
-# del controller mas bien.
+from lib.utils import hay_sesion_activa
 
 
 def configurar(app):
@@ -16,29 +13,45 @@ def configurar(app):
     def buscar():
         return render_template("buscar.html")
 
-    @app.route("/receta/<codigo>")
-    def receta(codigo):
-        return controller.receta(codigo)
+    @app.route("/receta/<id>")
+    def receta(id):
+        return controller.receta(id)
 
-    @app.route("/perfil/<codigo>", methods=["GET", "POST"])
-    def perfil(codigo):
-        if session.get("id_usuario") and request.method == "POST":
-            controller.perfil_post(codigo)
+    @app.route("/receta/crear", methods=["GET", "POST"])
+    def receta_crear():
+        return render_template("receta-crear.html")
 
-        return controller.perfil_get(codigo)
+    @app.route("/usuario/<id>", methods=["GET", "POST"])
+    def usuario(id):
+        if request.method == "POST":
+            if hay_sesion_activa():
+                controller.usuario_update(id)
+            else:
+                return redirect("/signin")
 
-    @app.route("/signup", methods=["GET", "POST"])
-    def signup():
-        return render_template("signup.html")
+        return controller.usuario(id)
 
     @app.route("/signin", methods=["GET", "POST"])
     def signin():
         if request.method == "GET":
-            return render_template("signin.html")
+            return controller.signin()
         else:
-            controller.signin_post()
-            return redirect("/")
+            return controller.signin_crear_cookie()
 
-    @app.route("/crear-receta", methods=["GET", "POST"])
-    def crear_receta():
-        return render_template("crear-receta.html")
+    @app.route("/signup", methods=["GET", "POST"])
+    def signup():
+        if request.method == "GET":
+            if hay_sesion_activa():
+                return redirect("/")
+            else:
+                return render_template("signup.html")
+        else:
+            return controller.signup_crear_nuevo_usuario()
+
+    @app.route("/usuario-creado")
+    def usuario_creado():
+        return render_template("usuario-creado.html");
+
+    @app.errorhandler(404)
+    def no_encontrado(_):
+        return render_template("404.html")

@@ -11,7 +11,7 @@ body, html {
   }
 
   .back{
-    background-image: url("/static/img/pantallas/cuenta-creada/fondo.jpeg");
+    background-image: url("/static/img/pantallas/usuario-creado/fondo.jpeg");
     height: 100%;
     background-size: cover;
   }

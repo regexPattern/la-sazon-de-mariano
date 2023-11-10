@@ -9,7 +9,7 @@ html {
 
 .bg-image {
   /* The image used */
-  background-image: url("/static/img/pantallas/crear-receta/fondo.jpeg");
+  background-image: url("/static/img/pantallas/receta-crear/fondo.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;

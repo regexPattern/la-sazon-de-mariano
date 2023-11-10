@@ -3,27 +3,24 @@ import logging
 import mysql.connector
 
 
-class Conexion:
+class BaseDeDatos:
     __instancia = None
 
-    def __init__(self, **config):
+    @staticmethod
+    def configurar(**config):
         logging.info("Conexión establecida con la base de datos")
-        Conexion.__instancia = mysql.connector.connect(**config)
+        BaseDeDatos.__instancia = mysql.connector.connect(**config)
 
     @staticmethod
     def obtener_instancia():
-        if Conexion.__instancia is None:
+        if BaseDeDatos.__instancia is None:
             raise Exception("No se ha inicializado ninguna conexión")
 
-        return Conexion.__instancia
+        return BaseDeDatos.__instancia
 
 
-class RegistroNoEncontrado(Exception):
-    pass
-
-
-def seleccionar(query, values=None):
-    conexion = Conexion.obtener_instancia()
+def sql_seleccionar(query, values=None):
+    conexion = BaseDeDatos.obtener_instancia()
     try:
         cursor = conexion.cursor(dictionary=True)
         cursor.execute(query, values)
@@ -36,8 +33,8 @@ def seleccionar(query, values=None):
         raise e
 
 
-def ejecutar(query, values):
-    conexion = Conexion.obtener_instancia()
+def sql_ejecutar(query, values):
+    conexion = BaseDeDatos.obtener_instancia()
     try:
         cursor = conexion.cursor(dictionary=True)
         cursor.execute(query, values)

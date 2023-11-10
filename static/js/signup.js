@@ -1,15 +1,12 @@
 document.getElementById("btn").addEventListener("click", myFunction);
 document.getElementById("ayudabtn").addEventListener("click", myFunctionAyuda);
-//document.getElementById("cancelbtn").addEventListener("click", myFunctionCancel);
 
 function myFunction() {
     validform = form();
     if (validform){
         const jsConfetti = new JSConfetti();
         jsConfetti.addConfetti();
-        setTimeout(() => {
-            window.location = "/cuenta-creada";
-          }, 2000); 
+        setTimeout(() => {}, 2000); 
     }
 }
 
@@ -17,13 +14,7 @@ function myFunctionAyuda(){
     alert("Si quieres ayuda, perdon pero no hay :(")
 }
 
-/*
-function myFunctionCancel(){       
-    window.location ="file"
-}
-*/
-
-function containsNumbers(str) {             //checks if there are any numbers in a string
+function containsNumbers(str) {
     numberYesOrNo = /\d/.test(str)
     return numberYesOrNo;
   }
@@ -99,5 +90,4 @@ function form(){
     usuarios.push(nuevoUsuario);
     return true;
   }
-
 }

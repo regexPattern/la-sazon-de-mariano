@@ -1,16 +1,18 @@
-import lib.base_de_datos as base_de_datos
+from flask import abort
+
+from lib.base_de_datos import sql_ejecutar, sql_seleccionar
 
 
-def ultimas_recetas():
+def recetas_select_ultimas_agregadas():
     query = """
         SELECT id, nombre, imagen, descripcion
         FROM recetas;
     """
 
-    return base_de_datos.seleccionar(query)
+    return sql_seleccionar(query)
 
 
-def obtener_receta(id_receta):
+def receta_select(id):
     query = """
         SELECT r.nombre nombre, u.id id_usuario, u.nombre nombre_usuario, r.fecha_publicacion, r.imagen, r.descripcion, r.pasos
         FROM recetas AS r
@@ -19,16 +21,16 @@ def obtener_receta(id_receta):
         WHERE r.id = %s;
     """
 
-    values = (id_receta,)
-    filas_recetas = base_de_datos.seleccionar(query, values)
+    values = (id,)
+    filas_recetas = sql_seleccionar(query, values)
 
     if len(filas_recetas) == 0:
-        raise base_de_datos.RegistroNoEncontrado("Receta no encontrada")
+        abort(404)
 
     return filas_recetas[0]
 
 
-def select_ingredientes_receta(id_receta):
+def receta_select_ingredientes(id):
     query = """
         SELECT i.nombre, ir.cantidad
         FROM ingredientes AS i
@@ -36,29 +38,27 @@ def select_ingredientes_receta(id_receta):
         ON ir.id_ingrediente = i.id AND ir.id_receta = %s;
     """
 
-    values = (id_receta,)
+    values = (id,)
+    return sql_seleccionar(query, values)
 
-    return base_de_datos.seleccionar(query, values)
 
-
-def select_usuario(id_usuario):
+def select_usuario(id):
     query = """
         SELECT id, nombre, imagen
         FROM usuarios
         WHERE id = %s;
     """
 
-    values = (id_usuario,)
-
-    perfiles = base_de_datos.seleccionar(query, values)
+    values = (id,)
+    perfiles = sql_seleccionar(query, values)
 
     if len(perfiles) == 0:
-        raise base_de_datos.RegistroNoEncontrado
+        abort(404)
 
     return perfiles[0]
 
 
-def select_id_usuario(nombre_usuario, password):
+def select_id_usuario_con_credenciales(nombre_usuario, password):
     query = """
         SELECT id
         FROM usuarios
@@ -66,25 +66,31 @@ def select_id_usuario(nombre_usuario, password):
     """
 
     values = (nombre_usuario, password)
+    ids_usuarios = sql_seleccionar(query, values)
 
-    ids_usuarios = base_de_datos.seleccionar(query, values)
+    if len(ids_usuarios) == 0:
+        return None
+
     return ids_usuarios[0]
-
 
 
 def select_usuarios_buscados(nombre_usuario):
     query = """
         SELECT id, nombre
         FROM usuarios
-        WHERE SOUNDEX(nombre) = SOUNDEX(%s);
+        WHERE SOUNDEX(nombre_usuario) = SOUNDEX(%s);
     """
 
     valores = (nombre_usuario,)
 
-    return base_de_datos.seleccionar(query, valores)
+    return sql_seleccionar(query, valores)
 
 
-def insert_usuario(datos_usuario):
+class RegistroNoEncontrado(Exception):
+    pass
+
+
+def usuario_insert(datos_usuario):
     query = """
         INSERT INTO usuarios
         (nombre, nombre_usuario, email, contrasenia, imagen)
@@ -100,16 +106,16 @@ def insert_usuario(datos_usuario):
         datos_usuario["imagen"],
     )
 
-    base_de_datos.ejecutar(query, valores)
+    sql_ejecutar(query, valores)
 
 
-def update_usuario(id_usuario, nuevos_datos_usuario):
+def usuario_update(id, datos_actualizados_usuario):
     query = """
         UPDATE usuarios
         SET nombre = %s
         WHERE id = %s;
     """
 
-    values = (nuevos_datos_usuario["nombre"], id_usuario)
+    values = (datos_actualizados_usuario["nombre"], id)
 
-    base_de_datos.ejecutar(query, values)
+    sql_ejecutar(query, values)
