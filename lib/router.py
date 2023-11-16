@@ -9,9 +9,9 @@ def configurar(app):
     def inicio():
         return controller.inicio()
 
-    @app.route("/buscar")
+    @app.route("/buscar", methods=["POST"])
     def buscar():
-        return render_template("buscar.html")
+        return controller.buscar()
 
     @app.route("/receta/<id>")
     def receta(id):

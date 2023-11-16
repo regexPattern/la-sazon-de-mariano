@@ -1,5 +1,52 @@
-<form method="POST">
-  <input name="nombre_usuario" value="Charles_01" />
-  <input name="password" value="1234" />
-  <button type="submit">Enviar</button>
-</form>
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/static/css/signin.css" />
+  <!-- Relaciona o enlaza este archivo html con el 01.css-->
+  <title>Sazón de Mariano</title>
+  <link rel="icon" href="/static/img/logo.png" />
+</head>
+
+<body>
+  <header>
+    <div class="contenedor">
+      <img id="logo" src="/static/img/logo.png" />
+      <span id="nombre-empresa">Sazón de Mariano</span>
+      <nav>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/explorar">Explorar</a></li>
+          <li><a href="/ingresar">Ingresar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="back">
+    <div class="functionofpage">
+      <b>Ingresar a tu Cuenta</b>
+    </div>
+
+    <div class="formulariocuenta">
+      <form action="/signin" method="post">
+        <label for="usu01">Usuario:</label><br />
+        <input type="text" name="nombre_usuario" id="usu01" /><br />
+        <label for="con01">Contraseña:</label><br />
+        <input type="password" name="password" id="con01" /><br />
+
+        <div class="buttons">
+          <input type="submit" id="btn" value="Ingresar" />
+          <input type="button" id="ayudabtn" value="Ayuda" />
+          <input type="reset" id="cancelbtn" value="Cancelar" />
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

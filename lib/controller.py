@@ -10,8 +10,8 @@ def inicio():
 
 
 def buscar():
-    # usuarios = model.obtener_resultados_busqueda_usuario(request.form["query"])
-    return ""
+    recetas = model.select_recetas_buscadas(request.form["busqueda"])
+    return render_template("buscar.html", receta=recetas)
 
 
 def receta(id):

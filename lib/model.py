@@ -1,6 +1,6 @@
 from flask import abort
 
-from lib.base_de_datos import sql_ejecute, sql_select
+from lib._mysql_db import BASE, insertDB, selectDB, updateDB
 
 
 def select_ultimas_recetas_agregadas():
@@ -9,7 +9,7 @@ def select_ultimas_recetas_agregadas():
         FROM recetas;
     """
 
-    return sql_select(query)
+    return selectDB(BASE, query)
 
 
 def select_receta(id):
@@ -22,9 +22,9 @@ def select_receta(id):
     """
 
     values = (id,)
-    filas_recetas = sql_select(query, values)
+    filas_recetas = selectDB(BASE, query, values)
 
-    if len(filas_recetas) == 0:
+    if filas_recetas is None or len(filas_recetas) == 0:
         abort(404)
 
     return filas_recetas[0]
@@ -39,7 +39,7 @@ def select_ingredientes_receta(id):
     """
 
     values = (id,)
-    return sql_select(query, values)
+    return selectDB(BASE, query, values)
 
 
 def select_usuario(id):
@@ -50,9 +50,9 @@ def select_usuario(id):
     """
 
     values = (id,)
-    perfiles = sql_select(query, values)
+    perfiles = selectDB(BASE, query, values)
 
-    if len(perfiles) == 0:
+    if perfiles is None or len(perfiles) == 0:
         abort(404)
 
     return perfiles[0]
@@ -66,7 +66,7 @@ def select_recetas_usuario(id):
     """
 
     values = (id,)
-    return sql_select(query, values)
+    return selectDB(BASE, query, values)
 
 
 def select_id_usuario_con_credenciales(nombre_usuario, password):
@@ -77,24 +77,24 @@ def select_id_usuario_con_credenciales(nombre_usuario, password):
     """
 
     values = (nombre_usuario, password)
-    ids_usuarios = sql_select(query, values)
+    ids_usuarios = selectDB(BASE, query, values)
 
-    if len(ids_usuarios) == 0:
+    if ids_usuarios is None or len(ids_usuarios) == 0:
         return None
 
     return ids_usuarios[0]
 
 
-def select_usuarios_buscados(nombre_usuario):
+def select_recetas_buscadas(nombre_receta):
     query = """
         SELECT id, nombre
         FROM usuarios
-        WHERE SOUNDEX(nombre_usuario) = SOUNDEX(%s);
+        WHERE nombre LIKE '%%%s%%';
     """
 
-    valores = (nombre_usuario,)
+    valores = (nombre_receta,)
 
-    return sql_select(query, valores)
+    return selectDB(BASE, query, valores)
 
 
 def insert_usuario(datos_usuario):
@@ -113,7 +113,7 @@ def insert_usuario(datos_usuario):
         datos_usuario["imagen"],
     )
 
-    sql_ejecute(query, valores)
+    insertDB(BASE, query, valores)
 
 
 def update_usuario(id, datos_actualizados_usuario):
@@ -125,4 +125,4 @@ def update_usuario(id, datos_actualizados_usuario):
 
     values = (datos_actualizados_usuario["nombre"], id)
 
-    sql_ejecute(query, values)
+    updateDB(BASE, query, values)
