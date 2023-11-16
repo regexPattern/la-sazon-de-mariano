@@ -19,7 +19,7 @@
         <ul>
           <li><a href="/">Inicio</a></li>
           <li><a href="/explorar">Explorar</a></li>
-          <li><a href="/crear-cuenta">Ingresar</a></li>
+          <li><a href="/signup">Ingresar</a></li>
         </ul>
       </nav>
     </div>
@@ -34,18 +34,11 @@
           <div id="registro-receta">
             <span>
               Agregado por
-              <a id="nombre-autor-receta" href="/perfil/{{ receta['id_usuario'] }}">{{ receta["nombre_usuario"] }}</a>
+              <a id="nombre-autor-receta" href="/usuario/{{ receta['id_usuario'] }}">{{ receta["nombre_usuario"] }}</a>
             </span>
           </div>
         </div>
       </div>
-
-      <button id="guardar-receta">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.75">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-        </svg>
-      </button>
     </div>
 
     {{ receta["descripcion"] }}
@@ -82,8 +75,6 @@
       <ul id="lista-comentarios"></ul>
     </section>
   </main>
-
-  <script src="/static/js/receta.js"></script>
 </body>
 
 </html>

@@ -1,18 +1,18 @@
 from flask import abort
 
-from lib.base_de_datos import sql_ejecutar, sql_seleccionar
+from lib.base_de_datos import sql_ejecute, sql_select
 
 
-def recetas_select_ultimas_agregadas():
+def select_ultimas_recetas_agregadas():
     query = """
         SELECT id, nombre, imagen, descripcion
         FROM recetas;
     """
 
-    return sql_seleccionar(query)
+    return sql_select(query)
 
 
-def receta_select(id):
+def select_receta(id):
     query = """
         SELECT r.nombre nombre, u.id id_usuario, u.nombre nombre_usuario, r.fecha_publicacion, r.imagen, r.descripcion, r.pasos
         FROM recetas AS r
@@ -22,7 +22,7 @@ def receta_select(id):
     """
 
     values = (id,)
-    filas_recetas = sql_seleccionar(query, values)
+    filas_recetas = sql_select(query, values)
 
     if len(filas_recetas) == 0:
         abort(404)
@@ -30,7 +30,7 @@ def receta_select(id):
     return filas_recetas[0]
 
 
-def receta_select_ingredientes(id):
+def select_ingredientes_receta(id):
     query = """
         SELECT i.nombre, ir.cantidad
         FROM ingredientes AS i
@@ -39,7 +39,7 @@ def receta_select_ingredientes(id):
     """
 
     values = (id,)
-    return sql_seleccionar(query, values)
+    return sql_select(query, values)
 
 
 def select_usuario(id):
@@ -50,12 +50,23 @@ def select_usuario(id):
     """
 
     values = (id,)
-    perfiles = sql_seleccionar(query, values)
+    perfiles = sql_select(query, values)
 
     if len(perfiles) == 0:
         abort(404)
 
     return perfiles[0]
+
+
+def select_recetas_usuario(id):
+    query = """
+        SELECT id, nombre, imagen
+        FROM recetas
+        WHERE id_usuario = %s;
+    """
+
+    values = (id,)
+    return sql_select(query, values)
 
 
 def select_id_usuario_con_credenciales(nombre_usuario, password):
@@ -66,7 +77,7 @@ def select_id_usuario_con_credenciales(nombre_usuario, password):
     """
 
     values = (nombre_usuario, password)
-    ids_usuarios = sql_seleccionar(query, values)
+    ids_usuarios = sql_select(query, values)
 
     if len(ids_usuarios) == 0:
         return None
@@ -83,10 +94,10 @@ def select_usuarios_buscados(nombre_usuario):
 
     valores = (nombre_usuario,)
 
-    return sql_seleccionar(query, valores)
+    return sql_select(query, valores)
 
 
-def usuario_insert(datos_usuario):
+def insert_usuario(datos_usuario):
     query = """
         INSERT INTO usuarios
         (nombre, nombre_usuario, email, contrasenia, imagen)
@@ -102,10 +113,10 @@ def usuario_insert(datos_usuario):
         datos_usuario["imagen"],
     )
 
-    sql_ejecutar(query, valores)
+    sql_ejecute(query, valores)
 
 
-def usuario_update(id, datos_actualizados_usuario):
+def update_usuario(id, datos_actualizados_usuario):
     query = """
         UPDATE usuarios
         SET nombre = %s
@@ -114,4 +125,4 @@ def usuario_update(id, datos_actualizados_usuario):
 
     values = (datos_actualizados_usuario["nombre"], id)
 
-    sql_ejecutar(query, values)
+    sql_ejecute(query, values)

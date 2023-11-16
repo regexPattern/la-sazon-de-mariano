@@ -424,6 +424,11 @@ VALUES
   ('Zumaque');
 
 INSERT INTO
+  categorias_de_receta (id_receta, id_categoria)
+VALUES
+  (1, 19);
+
+INSERT INTO
   ingredientes_de_receta (id_receta, id_ingrediente, cantidad)
 VALUES
   (1, 2, '1 chorro'),

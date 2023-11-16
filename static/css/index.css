@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Roboto Slab";
   font-weight: 100 900;
-  src: url("../static/fonts/RobotoSlab-VariableFont_wght.ttf");
+  src: url("/static/fonts/RobotoSlab-VariableFont_wght.ttf");
   font-display: swap;
 }
 
@@ -11,7 +11,7 @@
 }
 
 body {
-  background-color: rgb(214, 255, 222);
+  background-color: rgb(189, 211, 203);
 }
 
 .slider-wrapper {

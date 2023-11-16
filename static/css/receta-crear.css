@@ -1,12 +1,20 @@
 body {
-  background-color: rgb(218, 245, 218);
+  background-color: rgb(189, 211, 203);
 }
 
 body,
 html {
   height: 100%;
 }
+#txt{
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgba(49, 49, 42, 0.822);
+  letter-spacing: -0.5px;
+  margin: 10px ;
 
+}
 .bg-image {
   /* The image used */
   background-image: url("/static/img/pantallas/receta-crear/fondo.jpeg");
@@ -21,12 +29,19 @@ html {
   background-size: cover;
 }
 
+
+
+.formularioreceta {
+  margin: 50px;
+  margin-bottom: 0px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 header {
-  padding: 10px 0px;
+  padding: 18px 0px;
   border-bottom: 1px solid #cbd5e1;
   background-color: #ffffffdd;
-  backdrop-filter: blur(8px);
-  position: sticky;
+  backdrop-filter: sticky;
   top: 0;
 }
 
@@ -36,9 +51,67 @@ header {
   margin: auto;
 }
 
-.formularioreceta {
-  margin: 50px;
-  margin-bottom: 0px;
+header > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#imagen-logo {
+  height: 52px;
+  object-fit: cover;
+}
+
+#nombre-empresa {
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: red;
+  margin-left: 8px;
+  letter-spacing: -0.5px;
+}
+
+header nav {
+  margin-left: auto;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+}
+.search-container {
+  margin: 20px;
+}
+
+input[type="text"] {
+  width: 180px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 90px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: gray;
+  color: #fff;
+  border: none;
+  border-radius: 180px;
+  cursor: pointer;
+}
+
+header {
+  padding: 18px 0px;
+  border-bottom: 1px solid #cbd5e1;
+  background-color: #ffffffdd;
+  backdrop-filter: sticky;
+  top: 0;
+}
+
+.contenedor {
+  max-width: 1280px;
+  padding: 0px 16px;
+  margin: auto;
 }
 
 header > div {
@@ -47,15 +120,15 @@ header > div {
   align-items: center;
 }
 
-#logo {
-  height: 70px;
+#imagen-logo {
+  height: 52px;
   object-fit: cover;
 }
 
 #nombre-empresa {
   font-size: 1.25rem;
   font-weight: bold;
-  font-family: "Roboto Slab", serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: red;
   margin-left: 8px;
   letter-spacing: -0.5px;
@@ -73,7 +146,7 @@ header nav ul {
 
 header nav a {
   text-decoration: none;
-  font-family: "Roboto Slab", serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #334155;
   font-weight: 500;
 }
@@ -126,14 +199,17 @@ input[type="button"] {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 input[type="reset"] {
   background-color: #c44b4b;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 input[type="button"] {
   background-color: #ecdd52;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* Clear floats after the columns */
@@ -156,7 +232,6 @@ input[type="button"] {
   padding: 12px 2px 12px 0;
 
   width: auto;
-  float: left;
   display: inline-block;
   text-align: right;
 }
@@ -164,9 +239,10 @@ input[type="button"] {
   margin-top: 7px;
   margin-left: 0px;
   padding: 23px 5px 5px 0;
-  float: left;
+
   width: auto;
   display: inline-block;
+  
 }
 
 input[type="checkbox"] + label {
@@ -174,6 +250,7 @@ input[type="checkbox"] + label {
   margin: 0.2em;
   cursor: pointer;
   padding: 0.2em;
+
 }
 
 input[type="checkbox"] {
@@ -243,7 +320,7 @@ img{
 .functionofpage {
   color: rgb(255, 254, 254);
   font-size: 35px;
-  font-family: "Roboto Slab", serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 30px;
   text-align: center;
 }

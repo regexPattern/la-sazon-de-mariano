@@ -5,7 +5,7 @@ from lib.utils import hay_sesion_activa
 
 
 def inicio():
-    recetas = model.recetas_select_ultimas_agregadas()
+    recetas = model.select_ultimas_recetas_agregadas()
     return render_template("index.html", recetas=recetas)
 
 
@@ -15,14 +15,15 @@ def buscar():
 
 
 def receta(id):
-    receta = model.receta_select(id)
-    ingredientes = model.receta_select_ingredientes(id)
+    receta = model.select_receta(id)
+    ingredientes = model.select_ingredientes_receta(id)
     return render_template("receta.html", receta=receta, ingredientes=ingredientes)
 
 
 def usuario(id):
     usuario = model.select_usuario(id)
-    return render_template("perfil.html", usuario=usuario)
+    recetas_usuario = model.select_recetas_usuario(id)
+    return render_template("usuario.html", usuario=usuario, recetas=recetas_usuario)
 
 
 def usuario_update(id):
@@ -30,7 +31,7 @@ def usuario_update(id):
         "nombre": request.form["nombre"],
     }
 
-    model.usuario_update(id, nuevos_datos_usuario)
+    model.update_usuario(id, nuevos_datos_usuario)
 
 
 def signin():
@@ -64,7 +65,7 @@ def signup_crear_nuevo_usuario():
     }
 
     try:
-        model.usuario_insert(datos_nuevo_usuario)
+        model.insert_usuario(datos_nuevo_usuario)
         return redirect("/usuario-creado")
     except:
         # TODO: Realmente no estamos haciendo nada con este mensaje de error en la pantalla.

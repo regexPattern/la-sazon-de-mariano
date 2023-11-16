@@ -38,7 +38,7 @@ function form(){
     isValid = false;
   }
   if(containsNumbers(nombre)){
-    alert("Es prohibido usar numeros en el nombre!");
+    alert("Esta prohibido usar numeros en el nombre!");
     isValid = false;
   }  
 
@@ -71,7 +71,7 @@ function form(){
     isValid = false;
   }
 
-  //Validar si los condiiones son aceptados. 
+  //Validar si los condiciones son aceptadas.
   if (!cond.checked){
     alert("Tienes que aceptar los condiciones para crear una cuenta!")
     isValid = false;

@@ -2,96 +2,98 @@
 <html lang="es">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Crear Receta | La Sazón de Mariano</title>
-	<link rel="icon" href="/static/img/logo.png" />
-	<link rel="stylesheet" href="/static/css/comun.css" />
-	<link rel="stylesheet" href="/static/css/receta-crear.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Receta | La Sazón de Mariano</title>
+  <link rel="icon" href="/static/img/logo.png" />
+  <link rel="stylesheet" href="/static/css/comun.css" />
+  <link rel="stylesheet" href="/static/css/receta-crear.css">
 </head>
 
 <body>
-	<header>
-		<div class="contenedor">
-			<img id="logo" src="/static/img/logo.png">
-			<span id="nombre-empresa">Sazón de Mariano</span>
-			<nav>
-				<ul>
-					<li><a href="/index">Inicio</a></li>
-					<li><a href="/receta">Explorar</a></li>
-					<li><a href="/crear-cuenta">Ingresar</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
+  <header>
+    <div class="contenedor">
+      <img id="imagen-logo" src="/static/img/logo.png" />
+      <span id="nombre-empresa">La sazón de Mariano</span>
+      <nav>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/">Explorar</a></li>
+          <li><a href="/signin">Ingresar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-	<div class="bg-image">
+  </header>
 
-		<div class="functionofpage">
-			<b>Publicar Receta</b>
-		</div>
+  <div class="bg-image">
 
-		<div class="formularioreceta">
+    <div class="functionofpage">
+      <span id="txt">Publicar Receta</span>
+    </div>
 
-			<form method="get">
-				<label for="nom02">Nombre del Plato:</label><br>
-				<input type="text" name="nombreplato" id="nom02"><br>
+    <div class="formularioreceta">
 
-				<label for="descrip">Breve descripción del Plato:</label><br>
-				<input type="text" name="recetadescrip" id="descrip"><br>
+      <form method="get">
+        <label for="nom02">Nombre del Plato:</label><br>
+        <input type="text" name="nombreplato" id="nom02"><br>
 
-				<label for="arch02">Agregar Imagen del Plato:</label><br>
-				<input type="file" name="archivoplato" id="arch02" /><br><br>
+        <label for="descrip">Breve descripción del Plato:</label><br>
+        <input type="text" name="recetadescrip" id="descrip"><br>
 
-				<label for="selLoc">Pais del Origen:</label><br>
-				<select id="selLoc" name="localidad" title="Seleccione...">
-					<option value="0" disabled selected>Seleccionar..</option>
-					<option value="1">Argentina</option>
-					<option value="2">Brazil</option>
-					<option value="3">Bolivia</option>
-					<option value="4">Chile</option>
-					<option value="5">Ecuador</option>
-					<option value="6">España</option>
-					<option value="7">México</option>
-					<option value="8">Nicaragua</option>
-					<option value="9">Polonia</option>
-					<option value="10">Suecia</option>
-				</select>
-				<br><br>
+        <label for="arch02">Agregar Imagen del Plato:</label><br>
+        <input type="file" name="archivoplato" id="arch02" /><br><br>
 
-				<div class="Categorias">
-					<fieldset class="fs">
-						<legend>Categorias:</legend>
-						<input type="checkbox" id="chk01" name="vegetariano" />
-						<label for="chk01">Vegetariano</label>
-						<input type="checkbox" id="chk02" name="vegano" />
-						<label for="chk02">Vegano</label>
-						<input type="checkbox" id="chk03" name="pescetariano" />
-						<label for="chk03">Pescetariano</label>
-						<input type="checkbox" id="chk04" name="sintacc" />
-						<label for="chk04">Sin TACC</label>
-					</fieldset>
-				</div>
+        <label for="selLoc">Pais del Origen:</label><br>
+        <select id="selLoc" name="localidad" title="Seleccione...">
+          <option value="0" disabled selected>Seleccionar..</option>
+          <option value="1">Argentina</option>
+          <option value="2">Brazil</option>
+          <option value="3">Bolivia</option>
+          <option value="4">Chile</option>
+          <option value="5">Ecuador</option>
+          <option value="6">España</option>
+          <option value="7">México</option>
+          <option value="8">Nicaragua</option>
+          <option value="9">Polonia</option>
+          <option value="10">Suecia</option>
+        </select>
+        <br><br>
 
-				<fieldset class="condiciones">
-					<legend></legend>
-					<input type="checkbox" id="chk00" name="terminos" />
-					<label for="chk00"> Acepto los términos y condiciones del publicación en el sitio web</label>
-				</fieldset>
+        <div class="Categorias">
+          <fieldset class="fs">
+            <legend>Categorias:</legend>
+            <input type="checkbox" id="chk01" name="vegetariano" />
+            <label for="chk01">Vegetariano</label>
+            <input type="checkbox" id="chk02" name="vegano" />
+            <label for="chk02">Vegano</label>
+            <input type="checkbox" id="chk03" name="pescetariano" />
+            <label for="chk03">Pescetariano</label>
+            <input type="checkbox" id="chk04" name="sintacc" />
+            <label for="chk04">Sin TACC</label>
+          </fieldset>
+        </div>
 
-		</div>
+        <fieldset class="condiciones">
+          <legend></legend>
+          <input type="checkbox" id="chk00" name="terminos" />
+          <label for="chk00"> Acepto los términos y condiciones del publicación en el sitio web</label>
+        </fieldset>
 
-		<div class="buttons">
-			<input type="submit" value="Publicar">
-			<input type="button" value="Ayuda">
-			<input type="reset" value="Cancelar">
-		</div>
+    </div>
 
-		</form>
-	</div>
+    <div class="buttons">
+      <input type="submit" value="Publicar">
+      <input type="button" value="Ayuda">
+      <input type="reset" value="Cancelar">
+    </div>
 
-    <script src="/static/js/receta-crear.js"></script>
+    </form>
+  </div>
+
+  <script src="/static/js/receta-crear.js"></script>
 </body>
 
 </html>

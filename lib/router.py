@@ -21,9 +21,9 @@ def configurar(app):
     def receta_crear():
         return render_template("receta-crear.html")
 
-    @app.route("/usuario/<id>", methods=["GET", "POST"])
+    @app.route("/usuario/<id>", methods=["GET", "PUT"])
     def usuario(id):
-        if request.method == "POST":
+        if request.method == "PUT":
             if hay_sesion_activa():
                 controller.usuario_update(id)
             else:

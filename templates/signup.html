@@ -2,82 +2,82 @@
 <html lang="es">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Crear Cuenta | La Sazón de Mariano</title>
-	<link rel="icon" href="/static/img/logo.png" />
-	<link rel="stylesheet" href="/static/css/comun.css" />
-	<link rel="stylesheet" href="/static/css/signup.css" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Cuenta | La Sazón de Mariano</title>
+  <link rel="icon" href="/static/img/logo.png" />
+  <link rel="stylesheet" href="/static/css/comun.css" />
+  <link rel="stylesheet" href="/static/css/signup.css" />
 </head>
 
 <body>
 
-	<header>
-		<div class="contenedor">
-			<img id="logo" src="/static/img/logo.png">
-			<span id="nombre-empresa">La sazón de Mariano</span>
-			<nav>
-				<ul>
-					<li><a href="/">Inicio</a></li>
-					<li><a href="/explorar">Explorar</a></li>
-					<li><a href="/ingresar">Ingresar</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
+  <header>
+    <div class="contenedor">
+      <img id="logo" src="/static/img/logo.png">
+      <span id="nombre-empresa">La sazón de Mariano</span>
+      <nav>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/explorar">Explorar</a></li>
+          <li><a href="/ingresar">Ingresar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-	<div class="bg-image">
+  <div class="bg-image">
 
-		<div class="functionofpage">
-			<b>Crear Cuenta</b>
-		</div>
+    <div class="functionofpage">
+      <b>Crear Cuenta</b>
+    </div>
 
-		<div class="formulariocuenta">
+    <div class="formulariocuenta">
 
-			<form method="get">
-				<label for="nom01">Nombre:</label><br>
-				<input type="text" name="nombre" id="nom01"><br>
-				<label for="usu01">Usuario:</label><br>
-				<input type="text" name="nombre_usuario" id="usu01"><br>
-				<label for="con01">Contraseña:</label><br>
-				<input type="password" name="contrasena" id="con01" /><br>
-				<label for="email01">Email:</label><br>
-				<input type="email" name="" id="email01"><br>
-				<label for="arch01">Agregar Imagen de Perfil:</label><br>
-				<input type="file" name="imagen" id="arch01" /><br><br>
+      <form method="get">
+        <label for="nom01">Nombre:</label><br>
+        <input type="text" name="nombre" id="nom01"><br>
+        <label for="usu01">Usuario:</label><br>
+        <input type="text" name="nombre_usuario" id="usu01"><br>
+        <label for="con01">Contraseña:</label><br>
+        <input type="password" name="contrasena" id="con01" /><br>
+        <label for="email01">Email:</label><br>
+        <input type="email" name="" id="email01"><br>
+        <label for="arch01">Agregar Imagen de Perfil:</label><br>
+        <input type="file" name="imagen" id="arch01" /><br><br>
 
-				<label for="selLoc">Pais:</label><br>
-				<select id="selLoc" name="localidad" title="Seleccione...">
-					<option value="0" disabled selected>Seleccionar..</option>
-					<option value="1">Argentina</option>
-					<option value="2">Brazil</option>
-					<option value="3">Bolivia</option>
-					<option value="4">Chile</option>
-					<option value="5">Ecuador</option>
-					<option value="6">España</option>
-					<option value="7">México</option>
-					<option value="8">Nicaragua</option>
-					<option value="9">Polonia</option>
-					<option value="10">Suecia</option>
-				</select>
-				<br><br>
+        <label for="selLoc">Pais:</label><br>
+        <select id="selLoc" name="localidad" title="Seleccione...">
+          <option value="0" disabled selected>Seleccionar..</option>
+          <option value="1">Argentina</option>
+          <option value="2">Brazil</option>
+          <option value="3">Bolivia</option>
+          <option value="4">Chile</option>
+          <option value="5">Ecuador</option>
+          <option value="6">España</option>
+          <option value="7">México</option>
+          <option value="8">Nicaragua</option>
+          <option value="9">Polonia</option>
+          <option value="10">Suecia</option>
+        </select>
+        <br><br>
 
-				<fieldset class="condiciones">
-					<legend></legend>
-					<label for="chk01">Acepto los términos y condiciones del sitio web:</label>
-					<input type="checkbox" id="chk01" name="terminos" />
-				</fieldset>
+        <fieldset class="condiciones">
+          <legend></legend>
+          <label for="chk01">Acepto los términos y condiciones del sitio web:</label>
+          <input type="checkbox" id="chk01" name="terminos" />
+        </fieldset>
 
-				<div class="buttons">
-					<input type="button" id="btn" value="Crear Cuenta">
-					<input type="button" id="ayudabtn" value="Ayuda">
-					<input type="reset" id="cancelbtn" value="Cancelar">
-				</div>
-				<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-				<script src="/static/js/crear-cuenta.js"></script>
-			</form>
-		</div>
+        <div class="buttons">
+          <input type="button" id="btn" value="Crear Cuenta">
+          <input type="button" id="ayudabtn" value="Ayuda">
+          <input type="reset" id="cancelbtn" value="Cancelar">
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+        <script src="/static/js/crear-cuenta.js"></script>
+      </form>
+    </div>
 </body>
 
 </html>

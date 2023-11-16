@@ -1,0 +1,200 @@
+@font-face {
+  font-family: "Roboto Slab";
+  font-weight: 100 900;
+  src: url("/static/fonts/RobotoSlab-VariableFont_wght.ttf");
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-color:  rgb(189, 211, 203);
+}
+
+body,
+html {
+  height: 100%;
+}
+.search-container {
+  margin: 20px;
+}
+
+input[type="text"] {
+  width: 180px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 90px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: gray;
+  color: #fff;
+  border: none;
+  border-radius: 180px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+header {
+  padding: 8px 0px;
+  border-bottom: 1px solid #cbd5e1;
+  background-color: #ffffffdd;
+  backdrop-filter: sticky;
+  top: 0;
+}
+
+.contenedor {
+  max-width: 1280px;
+  padding: 0px 16px;
+  margin: auto;
+}
+
+header > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#imagen-logo {
+  height: 52px;
+  object-fit: cover;
+}
+
+#nombre-empresa {
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: red;
+  margin-left: 8px;
+  letter-spacing: -0.5px;
+}
+
+header nav {
+  margin-left: auto;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+}
+
+header nav a {
+  text-decoration: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #334155;
+  font-weight: 500;
+}
+
+#txt {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgba(49, 49, 42, 0.822);
+  letter-spacing: -0.5px;
+  margin: 10px ;
+  text-align: left;
+}
+
+.perfil {
+  font-size: 13px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 20px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+
+}
+
+#imagen-perfil {
+  float: left;
+  height: 180px;
+  width: 180px;
+  margin: 20px;
+  border-radius: 180px;
+}
+
+.datos{
+  font-size: 0.5rem;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgba(49, 49, 42, 0.822);
+  letter-spacing: -0.5px;
+  text-align: left;
+  flex-shrink: auto;
+  text-size-adjust: auto;
+  padding-left: 0.5cm;
+  padding-right: 0.5cm;
+  object-fit: cover;
+
+}
+.flex-box2{
+  background:#ffffffdd;
+  font-size: 13px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 20px;
+  margin: 10px;
+ 
+}
+
+.nueva-receta {
+  background-color: #dbdde0;
+  border-radius: 180px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size:xx-small;
+}
+
+.nueva-receta a:link {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration:none;
+}
+
+.nueva-receta a:hover {
+  color: rgb(255, 0, 225);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.lista-alimentos {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  flex-direction: row;
+}
+
+.alimento {
+  background: white;
+  color: rgb(0, 0, 0);
+  font-size: 13px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 20px;
+  margin: 10px;
+}
+
+.imagen-alimento img {
+  height: 240px;
+  width: 90%;
+  object-fit: cover;
+}
+
+.imagen-alimento a:link {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
+}

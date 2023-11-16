@@ -19,7 +19,7 @@ class BaseDeDatos:
         return BaseDeDatos.__instancia
 
 
-def sql_seleccionar(query, values=None):
+def sql_select(query, values=None):
     conexion = BaseDeDatos.obtener_instancia()
     try:
         cursor = conexion.cursor(dictionary=True)
@@ -33,7 +33,7 @@ def sql_seleccionar(query, values=None):
         raise e
 
 
-def sql_ejecutar(query, values):
+def sql_ejecute(query, values):
     conexion = BaseDeDatos.obtener_instancia()
     try:
         cursor = conexion.cursor(dictionary=True)
