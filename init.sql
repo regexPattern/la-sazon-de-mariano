@@ -482,7 +482,7 @@ VALUES
 INSERT INTO
   categorias_de_receta (id_receta, id_categoria)
 VALUES
-  (1,, 14),
+  (1, 14),
   (1, 19),
   (2, 6),
   (2, 14),
