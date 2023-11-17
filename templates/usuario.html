@@ -1,53 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" type="text/css" href="/static/css/usuario.css" />
   <title>Sazón de Mariano</title>
-  <link rel="icon" href="/static/logo.jpeg">
+  <link rel="icon" href="/static/logo.jpeg" />
 </head>
 
 <body>
-  <header>
-    <div class="contenedor">
-      <img id="imagen-logo" src="/static/img/logo.png" />
-      <span id="nombre-empresa">La sazón de Mariano</span>
-
-      <div class="search-container">
-        <input type="text" id="search-input" placeholder="Buscar..." />
-        <button onclick="buscar()">Buscar</button>
-      </div>
-      <div id="resultados"></div>
-
-      <nav>
-        <ul>
-          <li><a href="/">Inicio</a></li>
-          <li><a href="/">Explorar</a></li>
-          <li><a href="/signin">Ingresar</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
+  {% include "header.html" %}
 
   <div class="flex-box2">
     <div class="perfil">
       <div>
-        <img id="imagen-perfil" src="{{ '/static/img/usuarios/' + usuario['imagen'] }}">
+        <img id="imagen-perfil" src="{{ '/static/img/usuarios/' + usuario['imagen'] }}" />
       </div>
 
       <div class="datos">
-
         <span id="txt">Mi perfil</span>
         <h1 class="nombre">Lautaro Luchetti</h1>
         <h1 class="email">lautaroluchetti@uca.edu.ar</h1>
-        <h1 class="descripcion"> Sobre mi:</h1>
-        <h2 class="descripcion"> Esta es mi descripcion donde escribo cosas interesantes sobre mi como mi amor por las
-          ardillas y los unicornios,lkcm vsklfmvksmfvkmkldvmskldvklsdnvkldnsfvlkdnvklnskldvnskldvnkldsfnv kldfn </h2>
-
+        <h1 class="descripcion">Sobre mi:</h1>
+        <h2 class="descripcion">
+          Esta es mi descripcion donde escribo cosas interesantes sobre mi
+          como mi amor por las ardillas y los unicornios,lkcm
+          vsklfmvksmfvkmkldvmskldvklsdnvkldnsfvlkdnvklnskldvnskldvnkldsfnv
+          kldfn
+        </h2>
       </div>
 
       <div class="nueva-receta">
@@ -65,12 +47,13 @@
       <div class="imagen-alimento">
         <img src="{{ '/static/img/recetas/' + receta['imagen'] }}" />
         <div class="texto">
-          <h1><a href="/receta/{{ receta['id'] }}">{{ receta['nombre'] }}</a></h1>
+          <h1>
+            <a href="/receta/{{ receta['id'] }}">{{ receta['nombre'] }}</a>
+          </h1>
         </div>
       </div>
     </div>
     {% endfor %}
-
   </div>
 </body>
 

@@ -11,26 +11,7 @@
 </head>
 
 <body>
-  <header>
-    <div class="contenedor">
-      <img id="imagen-logo" src="/static/img/logo.png" />
-      <span id="nombre-empresa">La sazón de Mariano</span>
-
-      <div class="search-container">
-        <input type="text" id="search-input" placeholder="Buscar..." />
-        <button onclick="buscar()">Buscar</button>
-      </div>
-      <div id="resultados"></div>
-
-      <nav>
-        <ul>
-          <li><a href="/">Inicio</a></li>
-          <li><a href="/">Explorar</a></li>
-          <li><a href="/signin">Ingresar</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  {% include "header.html" %}
 
   <section class="slider-wrapper">
     <button class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
@@ -55,10 +36,15 @@
   <div class="flex-container2"></div>
 
   <!--RECETAS-->
-  <div class="cont-r">
+  <div class="contenedor-recetas">
     {% for receta in recetas %}
-    <a href="/receta/{{receta['id']}}" class="flex-box2 texto">
-      <img src="{{ '/static/img/recetas/' + receta['imagen'] }}" class="fotos2" />
+    <a href="/receta/{{receta['id']}}" class="tarjeta-receta">
+      <img src="{{ '/static/img/recetas/' + receta['imagen'] }}" />
+      <h1>{{ receta['nombre'] }}</h1>
+      <p>{{ receta['descripcion'] }}</p>
+    </a>
+    <a href="/receta/{{receta['id']}}" class="tarjeta-receta">
+      <img src="{{ '/static/img/recetas/' + receta['imagen'] }}" />
       <h1>{{ receta['nombre'] }}</h1>
       <p>{{ receta['descripcion'] }}</p>
     </a>

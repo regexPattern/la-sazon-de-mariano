@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/static/css/header.css" />
+<header>
+  <div>
+    <img id="imagen-logo" src="/static/img/logo.png" />
+    <span id="nombre-empresa">La sazón de Mariano</span>
+    <nav>
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        {% if hay_sesion_activa %}
+          <li><a href="/logout">Salir</a></li>
+        {% else %}
+          <li><a href="/signin">Ingresar</a></li>
+          <li><a href="/signup">Registrarme</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</header>

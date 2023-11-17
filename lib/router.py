@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request
+from flask import redirect, render_template, request, session
 
 import lib.controller as controller
 from lib.utils import hay_sesion_activa
@@ -48,9 +48,14 @@ def configurar(app):
         else:
             return controller.signup_crear_nuevo_usuario()
 
+    @app.route("/logout")
+    def logout():
+        session.clear()
+        return redirect("/signin")
+
     @app.route("/usuario-creado")
     def usuario_creado():
-        return render_template("usuario-creado.html");
+        return render_template("usuario-creado.html")
 
     @app.errorhandler(404)
     def no_encontrado(_):

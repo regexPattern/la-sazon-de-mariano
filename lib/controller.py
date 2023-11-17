@@ -6,7 +6,9 @@ from lib.utils import hay_sesion_activa
 
 def inicio():
     recetas = model.select_ultimas_recetas_agregadas()
-    return render_template("index.html", recetas=recetas)
+    return render_template(
+        "index.html", recetas=recetas, hay_sesion_activa=hay_sesion_activa()
+    )
 
 
 def buscar():
@@ -17,13 +19,23 @@ def buscar():
 def receta(id):
     receta = model.select_receta(id)
     ingredientes = model.select_ingredientes_receta(id)
-    return render_template("receta.html", receta=receta, ingredientes=ingredientes)
+    return render_template(
+        "receta.html",
+        receta=receta,
+        ingredientes=ingredientes,
+        hay_sesion_activa=hay_sesion_activa(),
+    )
 
 
 def usuario(id):
     usuario = model.select_usuario(id)
     recetas_usuario = model.select_recetas_usuario(id)
-    return render_template("usuario.html", usuario=usuario, recetas=recetas_usuario)
+    return render_template(
+        "usuario.html",
+        usuario=usuario,
+        recetas=recetas_usuario,
+        hay_sesion_activa=hay_sesion_activa(),
+    )
 
 
 def usuario_update(id):
