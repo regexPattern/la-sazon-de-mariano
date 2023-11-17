@@ -10,10 +10,3 @@ services:
       - MYSQL_DATABASE=recetario
     ports:
       - 3306:3306
-  phpmyadmin:
-    image: phpmyadmin
-    restart: always
-    environment:
-      - PMA_ARBITRARY=1
-    ports:
-      - 8080:80
