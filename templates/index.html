@@ -43,11 +43,6 @@
       <h1>{{ receta['nombre'] }}</h1>
       <p>{{ receta['descripcion'] }}</p>
     </a>
-    <a href="/receta/{{receta['id']}}" class="tarjeta-receta">
-      <img src="{{ '/static/img/recetas/' + receta['imagen'] }}" />
-      <h1>{{ receta['nombre'] }}</h1>
-      <p>{{ receta['descripcion'] }}</p>
-    </a>
     {% endfor %}
   </div>
 </body>
