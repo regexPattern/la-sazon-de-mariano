@@ -126,3 +126,30 @@ def update_usuario(id, datos_actualizados_usuario):
     values = (datos_actualizados_usuario["nombre"], id)
 
     updateDB(BASE, query, values)
+
+
+def select_medidas():
+    query = """
+        SELECT id, nombre
+        FROM medidas;
+    """
+
+    return selectDB(BASE, query)
+
+
+def select_paises():
+    query = """
+        SELECT id, nombre
+        FROM paises;
+    """
+
+    return selectDB(BASE, query)
+
+
+def select_categorias():
+    query = """
+        SELECT id, nombre
+        FROM categorias;
+    """
+
+    return selectDB(BASE, query)

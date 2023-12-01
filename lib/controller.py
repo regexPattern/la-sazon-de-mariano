@@ -83,3 +83,12 @@ def signup_crear_nuevo_usuario():
         # TODO: Realmente no estamos haciendo nada con este mensaje de error en la pantalla.
         params = {"error": "Error al crear el usuario"}
         return render_template("signup.html", params=params)
+
+
+def get_crear_nueva_receta():
+    medidas = model.select_medidas()
+    paises = model.select_paises()
+    categorias = model.select_categorias()
+    return render_template(
+        "receta-crear.html", medidas=medidas, paises=paises, categorias=categorias
+    )

@@ -22,12 +22,30 @@
 
     <div class="formularioreceta">
 
-      <form method="get">
+      <form>
         <label for="nom02">Nombre del Plato:</label><br>
-        <input type="text" name="nombreplato" id="nom02"><br>
+        <input type="text" name="nombreplato" id="nom02" value="aaa"><br>
 
-        <label for="descrip">Breve descripción del Plato:</label><br>
-        <input type="text" name="recetadescrip" id="descrip"><br>
+        <label for="descrip">Instrucciones del Plato:</label><br>
+        <input type="text" name="recetadescrip" id="descrip" value="aaa"><br>
+
+        <div id="inputsingredientes" class="ingredientes">
+          <label for="ingrediente">Ingrediente:</label>
+          <input type="text" name="ingredientename" id="ingrediente">
+
+          <label for="cantidad">Cantidad:</label>
+          <input type="text" name="ingredientecant" id="cantidad">
+
+          <label for="selQuan">Medida:</label>
+          <select id="selQuan" name="medidas" title="Seleccione...">
+            <option value="0" disabled selected>Seleccionar..</option>
+            {% for medida in medidas %}
+            <option value="{{medida['id']}}">{{medida['nombre']}}</option>
+            {% endfor %}
+          </select>
+
+          <button class="agregarbutton" type="button" id="btnAgregar" onclick="agregarIngrediente()">Agregar</input>
+        </div>
 
         <label for="arch02">Agregar Imagen del Plato:</label><br>
         <input type="file" name="archivoplato" id="arch02" /><br><br>
@@ -35,30 +53,22 @@
         <label for="selLoc">Pais del Origen:</label><br>
         <select id="selLoc" name="localidad" title="Seleccione...">
           <option value="0" disabled selected>Seleccionar..</option>
-          <option value="1">Argentina</option>
-          <option value="2">Brazil</option>
-          <option value="3">Bolivia</option>
-          <option value="4">Chile</option>
-          <option value="5">Ecuador</option>
-          <option value="6">España</option>
-          <option value="7">México</option>
-          <option value="8">Nicaragua</option>
-          <option value="9">Polonia</option>
-          <option value="10">Suecia</option>
+
+          {% for pais in paises %}
+          <option value="{{pais['id']}}">{{ pais['nombre'] }}</option>
+          {% endfor %}
         </select>
+
         <br><br>
 
         <div class="Categorias">
           <fieldset class="fs">
             <legend>Categorias:</legend>
-            <input type="checkbox" id="chk01" name="vegetariano" />
-            <label for="chk01">Vegetariano</label>
-            <input type="checkbox" id="chk02" name="vegano" />
-            <label for="chk02">Vegano</label>
-            <input type="checkbox" id="chk03" name="pescetariano" />
-            <label for="chk03">Pescetariano</label>
-            <input type="checkbox" id="chk04" name="sintacc" />
-            <label for="chk04">Sin TACC</label>
+            {% for cat in categorias %}
+            <input type="checkbox" id="{{ cat['id'] }}" name="{{ 'categoria-' + cat['id']|string }}"
+              value="{{ cat['id'] }}" />
+            <label for="{{ cat['id'] }}">{{ cat['nombre'] }}</label>
+            {% endfor %}
           </fieldset>
         </div>
 
@@ -71,8 +81,8 @@
     </div>
 
     <div class="buttons">
-      <input type="submit" value="Publicar">
-      <input type="button" value="Ayuda">
+      <input id="btn" type="submit" value="Publicar">
+      <input id="ayudabtn" type="button" value="Ayuda">
       <input type="reset" value="Cancelar">
     </div>
 

@@ -153,6 +153,6 @@ COMPRA_ON={ "host":"localhost",
 
 
 BASE={ "host":"localhost",
-        "user":"user",
+        "user":"root",
         "pass":"password",
         "dbname":"recetario"}

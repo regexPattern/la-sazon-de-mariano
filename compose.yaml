@@ -4,9 +4,17 @@ services:
     build: .
     restart: always
     environment:
-      - MARIADB_USER=user
+      - MARIADB_USER=carlos
       - MARIADB_PASSWORD=password
       - MARIADB_ROOT_PASSWORD=password
       - MYSQL_DATABASE=recetario
     ports:
       - 3306:3306
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    links:
+      - base-de-datos:db
+    ports:
+      - 8080:80

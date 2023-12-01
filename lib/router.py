@@ -19,7 +19,10 @@ def configurar(app):
 
     @app.route("/receta/crear", methods=["GET", "POST"])
     def receta_crear():
-        return render_template("receta-crear.html")
+        if request.method == "POST":
+            pass
+        else:
+            return controller.get_crear_nueva_receta()
 
     @app.route("/usuario/<id>", methods=["GET", "PUT"])
     def usuario(id):

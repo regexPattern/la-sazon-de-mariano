@@ -356,3 +356,24 @@ img{
     resize: vertical;
   }
 }
+
+.ingredientes {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px; /* Ajusta según sea necesario */
+  margin-top: 20px;
+}
+
+.agregarbutton{
+  height: 48px;
+  margin: 10px;
+  border-radius: 13px;
+  padding: 9px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: black;
+  font-size: 13px;
+  background-color: rgb(221, 255, 197);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
