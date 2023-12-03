@@ -32,10 +32,11 @@ def select_receta(id):
 
 def select_ingredientes_receta(id):
     query = """
-        SELECT i.nombre, ir.cantidad
-        FROM ingredientes AS i
-        INNER JOIN ingredientes_de_receta AS ir
-        ON ir.id_ingrediente = i.id AND ir.id_receta = %s;
+        SELECT ing.nombre nombre, med.nombre cantidad
+        FROM ingredientes ing
+        INNER JOIN medidas med
+        ON ing.id_medida = med.id
+        WHERE ing.id_receta = %s;
     """
 
     values = (id,)
@@ -85,14 +86,16 @@ def select_id_usuario_con_credenciales(nombre_usuario, password):
     return ids_usuarios[0]
 
 
-def select_recetas_buscadas(nombre_receta):
+def select_recetas_buscadas(busqueda):
     query = """
-        SELECT id, nombre
-        FROM usuarios
-        WHERE nombre LIKE '%%%s%%';
-    """
+        SELECT rec.id, rec.nombre, rec.imagen, rec.descripcion
+        FROM recetas rec
+        INNER JOIN paises pais
+        ON rec.pais=pais.id
+        WHERE rec.nombre LIKE %s OR pais.nombre LIKE %s ;
+      """
 
-    valores = (nombre_receta,)
+    valores = ("%"+ busqueda + "%","%"+ busqueda + "%")
 
     return selectDB(BASE, query, valores)
 
@@ -139,7 +142,7 @@ def select_medidas():
 
 def select_paises():
     query = """
-        SELECT id, nombre
+        SELECT id, nombre, imagen
         FROM paises;
     """
 

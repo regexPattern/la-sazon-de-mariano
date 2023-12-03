@@ -35,6 +35,7 @@ header {
 .formulariocuenta {
   margin: 50px;
   margin-bottom: 0px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 header > div {
@@ -51,7 +52,7 @@ header > div {
 #nombre-empresa {
   font-size: 1.25rem;
   font-weight: bold;
-  font-family: "Roboto Slab", serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: red;
   margin-left: 8px;
   letter-spacing: -0.5px;
@@ -69,7 +70,7 @@ header nav ul {
 
 header nav a {
   text-decoration: none;
-  font-family: "Roboto Slab", serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #334155;
   font-weight: 500;
 }
@@ -155,7 +156,6 @@ input[type="button"] {
   padding: 12px 2px 12px 0;
 
   width: auto;
-  float: left;
   display: inline-block;
   text-align: right;
 }
@@ -163,7 +163,6 @@ input[type="button"] {
   margin-top: 7px;
   margin-left: 0px;
   padding: 23px 5px 5px 0;
-  float: left;
   width: auto;
   display: inline-block;
 }
@@ -171,7 +170,7 @@ input[type="button"] {
 .functionofpage {
   color: rgb(0, 0, 0);
   font-size: 35px;
-  font-family: "Roboto Slab", serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 30px;
   text-align: center;
 }

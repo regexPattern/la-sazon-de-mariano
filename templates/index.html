@@ -20,11 +20,13 @@
     <!--CATEGORIAS-->
     <div class="cont-c">
       {% for pais in paises %}
-      <a href="/explorar?query={{ pais['nombre'].lower() }}" class="flex-box">
-        <div class="fotos">
+      <form method="post" action="/buscar" class="flex-box">
+        <input name="busqueda" value="{{pais['nombre']}}" hidden>
+        <button class="fotos" type="submit">
           <img src="{{ '/static/img/paises/' + pais['imagen'] }}" />
-        </div>
+        </button>
       </a>
+      </form>
       {% endfor %}
     </div>
   </section>

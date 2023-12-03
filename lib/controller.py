@@ -6,8 +6,9 @@ from lib.utils import hay_sesion_activa
 
 def inicio():
     recetas = model.select_ultimas_recetas_agregadas()
+    paises = model.select_paises()
     return render_template(
-        "index.html", recetas=recetas, hay_sesion_activa=hay_sesion_activa()
+        "index.html", recetas=recetas, paises=paises, hay_sesion_activa=hay_sesion_activa()
     )
 
 

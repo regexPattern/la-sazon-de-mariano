@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "Roboto Slab";
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 100 900;
   src: url("../static/fonts/RobotoSlab-VariableFont_wght.ttf");
   font-display: swap;
@@ -12,7 +12,7 @@
 }
 
 body {
-  background-color:  rgb(189, 211, 203);
+  background-color:   rgb(178, 207, 233);
 }
 
 body,
@@ -128,18 +128,20 @@ button:hover {
 
 .alimento {
   background: white;
-  color: rgb(0, 0, 0);
-  font-size: 13px;
-  text-align: center;
-  line-height: 20px;
   border-radius: 20px;
-  margin: 10px;
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+  border: 1px solid rgb(200, 200, 200);
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 }
 
 .imagen-alimento img {
-  height: 240px;
-  width: 90%;
+  width: 100%;
   object-fit: cover;
+  border-radius: 20px;
 }
 
 .imagen-alimento a:link {

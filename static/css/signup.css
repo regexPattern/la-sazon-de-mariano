@@ -11,7 +11,7 @@ body, html {
   }
 
   .bg-image{
-    background-image: url("/static/img/pantallas/crear-cuenta/fondo.jpeg");
+    background-image: url("/static/img/pantallas/signup/fondo.jpeg");
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -57,7 +57,7 @@ header >div{
 #nombre-empresa{
     font-size: 1.25rem; 
     font-weight: bold; 
-    font-family: "Roboto Slab", serif; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
     color: red; 
     margin-left: 8px;
     letter-spacing: -0.5px; 
@@ -75,7 +75,7 @@ header nav ul{
 
 header nav a {
     text-decoration: none; 
-    font-family: "Roboto Slab", serif; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
     color: #334155; 
     font-weight: 500; 
 }
@@ -156,7 +156,6 @@ margin-left: 20px;
 padding: 12px 2px 12px 0;
 
 width: auto;
-float: left;  
 display: inline-block;
 text-align: right;
 }
@@ -164,7 +163,6 @@ text-align: right;
 margin-top: 7px;  
 margin-left: 0px;  
 padding: 23px 5px 5px 0;
-float: left;
 width: auto;
 display: inline-block;
 }
@@ -172,7 +170,7 @@ display: inline-block;
 .functionofpage{
     color:rgb(0, 0, 0);
     font-size: 35px; 
-    font-family: "Roboto Slab", serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding: 30px; 
     text-align: center;
 }

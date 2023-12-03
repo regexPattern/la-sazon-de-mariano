@@ -3,6 +3,21 @@
   <div>
     <img id="imagen-logo" src="/static/img/logo.png" />
     <span id="nombre-empresa">La sazón de Mariano</span>
+    <div id="cover">
+      <form class="form2" method="post" action="/buscar">
+        <div class="tb">
+          <div class="td">
+            <input class="input2" type="text" placeholder="Buscar" name="busqueda" required>
+          </div>
+          <div class="td" id="s-cover">
+            <button class="buttonbusca" type="submit">
+              <div id="s-circle"></div>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
     <nav>
       <ul>
         <li><a href="/">Inicio</a></li>
@@ -15,4 +30,8 @@
       </ul>
     </nav>
   </div>
+
+    
+
+
 </header>

@@ -1,17 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link rel="icon" href="/static/img/logo.png" />
+  <title>Inicio | La Sazón de Mariano</title>
+  <link rel="stylesheet" href="/static/css/comun.css" />
+  <link rel="stylesheet" href="/static/css/index.css" />
 </head>
 
 <body>
-  <form action="/buscar" method="get">
-    <input type="text" name="busqueda" value="">
+  {% include "header.html" %}
 
-  </form>
+  <section class="slider-wrapper">
+    <button class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
+
+    <button class="slide-arrow" id="slide-arrow-next">&#8250;</button>
+    <!--CATEGORIAS-->
+    <div class="cont-c">
+      {% for pais in paises %}
+      <a href="/explorar?query={{ pais['nombre'].lower() }}" class="flex-box">
+        <div class="fotos">
+          <img src="{{ '/static/img/paises/' + pais['imagen'] }}" />
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <div class="flex-box1">
+    <span id="txt"> Resultados de busqueda </span>
+  </div>
+
+  <div class="flex-container2"></div>
+
+  <!--RECETAS-->
+  <div class="contenedor-recetas">
+    {% for receta in recetas %}
+    <a href="/receta/{{receta['id']}}" class="tarjeta-receta">
+      <img src="{{ '/static/img/recetas/' + receta['imagen'] }}" />
+      <h1>{{ receta['nombre'] }}</h1>
+      <p>{{ receta['descripcion'] }}</p>
+    </a>
+    {% endfor %}
+  </div>
 </body>
 
 </html>

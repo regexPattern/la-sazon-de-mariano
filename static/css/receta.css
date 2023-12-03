@@ -6,7 +6,7 @@
 }
 
 @font-face {
-  font-family: "Roboto Slab";
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 100 900;
   src: url("/static/fonts/RobotoSlab-VariableFont_wght.ttf");
   font-display: swap;
@@ -23,7 +23,8 @@
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color:  rgb(178, 207, 233);
 }
 
 .contenedor {
@@ -41,13 +42,13 @@ body {
 #contenedor-receta h1 {
   letter-spacing: -1.5px;
   font-size: 3rem;
-  font-family: "Roboto Slab", serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #contenedor-receta h2 {
   letter-spacing: -1px;
   font-size: 2rem;
-  font-family: "Roboto Slab", serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* RECETA -> CABECERA */
@@ -67,7 +68,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 0.85rem;
+  font-size: 1.5rem;
   color: #334155;
 }
 
@@ -75,6 +76,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  font-size: 1.5rem;
 }
 
 #contenedor-imagen-receta {
@@ -86,6 +88,7 @@ body {
 #imagen-receta {
   width: 100%;
   object-fit: cover;
+  border-radius: 20px;
 }
 
 /* RECETA -> DESCRIPCION */
@@ -142,14 +145,15 @@ form {
 textarea {
   height: 4rem;
   padding: 8px;
-  font-family: "Inter", sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: var(--std-border-radius);
   border: 1px solid #cbd5e1;
   flex: 1;
+  
 }
 
 textarea::placeholder {
-  font-family: "Inter", sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 button[type="submit"] {
