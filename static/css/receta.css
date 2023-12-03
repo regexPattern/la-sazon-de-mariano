@@ -68,7 +68,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 1.5rem;
   color: #334155;
 }
 
@@ -201,4 +200,23 @@ button[type="submit"] {
   #descripcion-receta {
     grid-template-columns: 1fr;
   }
+}
+
+#listado-comentarios {
+  list-style: none;
+}
+
+#listado-comentarios > * + * {
+  margin-top: 8px;
+}
+
+#listado-comentarios li {
+  padding: 8px;
+  background-color: white;
+  border-radius: 12px;
+}
+
+form button {
+  width: min-content;
+  font-size: 1rem;
 }

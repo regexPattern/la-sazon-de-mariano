@@ -1,73 +1,79 @@
 <!doctype html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/static/img/logo.png" />
+    <title>{{ receta["nombre"] }} | La Sazón de Mariano</title>
+    <link rel="stylesheet" href="/static/css/comun.css" />
+    <link rel="stylesheet" href="/static/css/receta.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="/static/img/logo.png" />
-  <title>{{ receta["nombre"] }} | La Sazón de Mariano</title>
-  <link rel="stylesheet" href="/static/css/comun.css" />
-  <link rel="stylesheet" href="/static/css/receta.css" />
-</head>
+  <body>
+    {% include "header.html" %}
 
-<body>
-  {% include "header.html" %}
+    <main id="contenedor-receta" class="contenedor">
+      <div id="cabecera-receta">
+        <div id="resumen-receta">
+          <h1 id="nombre-receta">{{ receta["nombre"] }}</h1>
 
-  <main id="contenedor-receta" class="contenedor">
-    <div id="cabecera-receta">
-      <div id="resumen-receta">
-        <h1 id="nombre-receta">{{ receta["nombre"] }}</h1>
+          <p>{{ receta["descripcion"] }}</p>
 
-        <div id="metadata-receta">
-          <div id="registro-receta">
-            <span>
-              Agregado por
-              <a id="nombre-autor-receta" href="/usuario/{{ receta['id_usuario'] }}">{{ receta["nombre_usuario"] }}</a>
-            </span>
+          <div id="metadata-receta">
+            <div id="registro-receta">
+              <span>
+                Agregado por
+                <a
+                  id="nombre-autor-receta"
+                  href="/usuario/{{ receta['id_usuario'] }}"
+                  >{{ receta["nombre_usuario"] }}</a
+                >
+              </span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    {{ receta["descripcion"] }}
+      <div id="contenedor-imagen-receta">
+        <img
+          id="imagen-receta"
+          src="{{ '/static/img/recetas/' + receta['imagen'] }}"
+        />
+      </div>
 
-    <div id="contenedor-imagen-receta">
-      <img id="imagen-receta" src="{{ '/static/img/recetas/' + receta['imagen'] }}" />
-    </div>
+      <div id="descripcion-receta">
+        <section id="ingredientes-receta">
+          <div>
+            <h2>Ingredientes</h2>
+            <ul id="lista-ingredientes">
+              {% for i in ingredientes -%}
+              <li>{{ i["nombre"] }} - {{ i["cantidad"] }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </section>
 
-    <div id="descripcion-receta">
-      <section id="ingredientes-receta">
-        <div>
-          <h2>Ingredientes</h2>
-          <ul id="lista-ingredientes">
-            {% for i in ingredientes -%}
-            <li>{{ i["nombre"] }} - {{ i["cantidad"] }}</li>
-            {% endfor %}
-          </ul>
-        </div>
+        <section id="instrucciones-receta">
+          <h2>Pasos</h2>
+          <p>{{ receta["pasos"] }}</p>
+        </section>
+      </div>
+
+      <section id="comentarios-receta">
+        <h2>Comentarios</h2>
+        <ul id="listado-comentarios">
+          {% for c in comentarios %}
+          <li>'{{c["contenido"]}}' comentado por {{c["nombre_usuario"]}}</li>
+          {% endfor %}
+        </ul>
+        <form method="post">
+          <textarea
+            name="contenido"
+            placeholder="Agregá un comentario sobre la receta."
+          ></textarea>
+          <button type="submit">Comentar</button>
+        </form>
       </section>
-
-      <section id="instrucciones-receta">
-        <h2>Pasos</h2>
-        <p>{{ receta["pasos"] }}</p>
-      </section>
-    </div>
-
-    
-    <section id="comentarios-receta">
-      <h2>Comentarios</h2>
-      {% for c in comentarios %}
-        <h4>'{{c["contenido"]}}' comentado por {{c["nombre_usuario"]}}</h4>
-      {% endfor %}
-      <form method="post">
-        <textarea name="contenido" placeholder="Agregá un comentario sobre la receta."></textarea>
-        <button type="submit">Comentar</button>
-      </form>
-
-      <ul id="lista-comentarios"></ul>
-    </section>
-
-  </main>
-</body>
-
+    </main>
+  </body>
 </html>
