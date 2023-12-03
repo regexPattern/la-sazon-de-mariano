@@ -53,15 +53,20 @@
       </section>
     </div>
 
+    
     <section id="comentarios-receta">
       <h2>Comentarios</h2>
-      <form>
-        <textarea name="contenido" placeholder="Agregá un comentarios sobre la receta."></textarea>
+      {% for c in comentarios %}
+        <h4>'{{c["contenido"]}}' comentado por {{c["nombre_usuario"]}}</h4>
+      {% endfor %}
+      <form method="post">
+        <textarea name="contenido" placeholder="Agregá un comentario sobre la receta."></textarea>
         <button type="submit">Comentar</button>
       </form>
 
       <ul id="lista-comentarios"></ul>
     </section>
+
   </main>
 </body>
 

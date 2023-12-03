@@ -8,10 +8,7 @@ def inicio():
     recetas = model.select_ultimas_recetas_agregadas()
     paises = model.select_paises()
     return render_template(
-        "index.html",
-        recetas=recetas,
-        paises=paises,
-        hay_sesion_activa=hay_sesion_activa(),
+        "index.html", recetas=recetas, paises=paises, hay_sesion_activa=hay_sesion_activa()
     )
 
 
@@ -23,10 +20,12 @@ def buscar():
 def receta(id):
     receta = model.select_receta(id)
     ingredientes = model.select_ingredientes_receta(id)
+    comentarios = model.select_comentarios(id)
     return render_template(
         "receta.html",
         receta=receta,
         ingredientes=ingredientes,
+        comentarios=comentarios,
         hay_sesion_activa=hay_sesion_activa(),
     )
 
@@ -103,21 +102,20 @@ def get_crear_nueva_receta():
         "receta-crear.html", medidas=medidas, paises=paises, categorias=categorias
     )
 
-
 def crear_nueva_receta():
     receta_nueva = {
         "nombre": request.json["nombre"],
         "imagen": request.json["imagen"],
         "localidad": int(request.json["localidad"]),
-        "pasos": request.json["pasos"],
+        "pasos": request.json["pasos"]
     }
 
-    for ingrediente in request.json["ingredientes"]:
+    for ingrediente in request.json["ingredientes"]: 
         pass
 
-    id_usuario = hay_sesion_activa()["id"]
+    id_usuario = hay_sesion_activa()['id']
 
-    model.insert_receta(receta_nueva, id_usuario)
+    model.insert_receta(receta_nueva,id_usuario ) 
     return redirect("/")
 
 

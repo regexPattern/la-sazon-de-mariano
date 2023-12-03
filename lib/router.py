@@ -14,9 +14,12 @@ def configurar(app):
     def buscar():
         return controller.buscar()
 
-    @app.route("/receta/<id>")
+    @app.route("/receta/<id>", methods=["GET", "POST"])
     def receta(id):
-        return controller.receta(id)
+        if request.method == "GET":
+            return controller.receta(id)
+        else:
+            return controller.comentar_receta(id, hay_sesion_activa()['id'])
 
     @app.route("/receta/crear", methods=["GET", "POST"])
     def receta_crear():
