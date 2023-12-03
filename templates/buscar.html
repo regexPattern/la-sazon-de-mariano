@@ -37,13 +37,17 @@
 
   <!--RECETAS-->
   <div class="contenedor-recetas">
-    {% for receta in recetas %}
-    <a href="/receta/{{receta['id']}}" class="tarjeta-receta">
-      <img src="{{ '/static/img/recetas/' + receta['imagen'] }}" />
-      <h1>{{ receta['nombre'] }}</h1>
-      <p>{{ receta['descripcion'] }}</p>
-    </a>
-    {% endfor %}
+    {% if recetas|length > 0 %}
+      {% for receta in recetas %}
+      <a href="/receta/{{receta['id']}}" class="tarjeta-receta">
+        <img src="{{ '/static/img/recetas/' + receta['imagen'] }}" />
+        <h1>{{ receta['nombre'] }}</h1>
+        <p>{{ receta['descripcion'] }}</p>
+      </a>
+      {% endfor %}
+    {% else %}
+      No hay resultados de busqueda
+    {% endif %}
   </div>
 </body>
 

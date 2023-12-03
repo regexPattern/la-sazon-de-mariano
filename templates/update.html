@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/static/css/signin.css" />
+  <!-- Relaciona o enlaza este archivo html con el 01.css-->
+  <title>Sazón de Mariano</title>
+  <link rel="icon" href="/static/img/logo.png" />
+</head>
+
+<body>
+    {% include "header.html" %}
+
+  <div class="back">
+    <div class="functionofpage">
+      <b>Ingresar a tu Cuenta</b>
+    </div>
+
+    <div class="formulariocuenta">
+      <form action="{{ '/usuario/' + usuario['id']|string + '/update' }}" method="post">
+        <label for="nom01">Nombre:</label><br>
+        <input type="text" name="nombre" id="nom01" value="{{ usuario['nombre']}}"><br>
+        <label for="con01">Contraseña:</label><br>
+        <input type="password" name="contrasena" id="con01"value="{{ usuario['contrasena']}}" /><br>
+        <label for="email01">Email:</label><br>
+        <input type="email" name="email" id="email01"value="{{ usuario['email']}}"/><br>
+        <label for="desc01">Descripción:</label><br>
+        <input type="text" name="descripcion" id="desc01"value="{{ usuario['descripcion']}}"/><br>
+
+        <div class="buttons">
+          <input type="submit" id="btn" value="Actualizar" />
+          <input type="button" id="ayudabtn" value="Ayuda" />
+          <input type="reset" id="cancelbtn" value="Cancelar" />
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -82,6 +82,7 @@ function form() {
 }
 
 let contadorIngredientes = 1; // Contador para identificadores únicos de ingredientes
+*/
 var arrayIngredientes = [];
 
 function agregarIngrediente() {
@@ -103,7 +104,6 @@ function agregarIngrediente() {
     nuevoElementoLista.textContent = `${ingrediente} ${cantidad} ${medida}`;
 
     // Añade el nuevo elemento a la lista
-
     listaIngredientes.appendChild(nuevoElementoLista);
     arrayIngredientes.push({
       ingrediente: ingrediente,
@@ -121,7 +121,7 @@ function agregarIngrediente() {
   } else {
     alert("Por favor, completa todos los campos antes de agregar.");
   }
-} */
+} 
 
 const form = document.getElementsByTagName("form")[0];
 
@@ -142,7 +142,14 @@ form.addEventListener("submit", (event) => {
     imagen: formData.get("archivoplato").name,
     localidad: formData.get("localidad"),
     categorias: categorias,
+    ingredientes: arrayIngredientes
   };
 
   console.log(infoReceta);
+
+  const request = new XMLHttpRequest(); 
+    request.open("POST", "/receta/crear"); 
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(infoReceta)); 
+
 });

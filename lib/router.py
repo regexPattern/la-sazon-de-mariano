@@ -1,6 +1,7 @@
 from flask import redirect, render_template, request, session
 
 import lib.controller as controller
+import lib.model as model
 from lib.utils import hay_sesion_activa
 
 
@@ -19,20 +20,28 @@ def configurar(app):
 
     @app.route("/receta/crear", methods=["GET", "POST"])
     def receta_crear():
+        if not hay_sesion_activa():
+            return redirect("/signin")
+
         if request.method == "POST":
-            pass
+            return controller.crear_nueva_receta()
         else:
             return controller.get_crear_nueva_receta()
 
     @app.route("/usuario/<id>", methods=["GET", "PUT"])
     def usuario(id):
-        if request.method == "PUT":
+        return controller.usuario(id)
+
+    @app.route("/usuario/<id>/update", methods=["GET", "POST"])
+    def usuario_update(id):
+        if request.method == "POST":
             if hay_sesion_activa():
-                controller.usuario_update(id)
+                return controller.usuario_update(id)
             else:
                 return redirect("/signin")
-
-        return controller.usuario(id)
+        else:
+            usuario = model.select_usuario(id)
+            return render_template("update.html", usuario=usuario)
 
     @app.route("/signin", methods=["GET", "POST"])
     def signin():

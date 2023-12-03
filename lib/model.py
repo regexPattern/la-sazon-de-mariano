@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import abort
 
 from lib._mysql_db import BASE, insertDB, selectDB, updateDB
@@ -91,11 +93,11 @@ def select_recetas_buscadas(busqueda):
         SELECT rec.id, rec.nombre, rec.imagen, rec.descripcion
         FROM recetas rec
         INNER JOIN paises pais
-        ON rec.pais=pais.id
+        ON rec.id_pais = pais.id
         WHERE rec.nombre LIKE %s OR pais.nombre LIKE %s ;
       """
 
-    valores = ("%"+ busqueda + "%","%"+ busqueda + "%")
+    valores = ("%" + busqueda + "%", "%" + busqueda + "%")
 
     return selectDB(BASE, query, valores)
 
@@ -156,3 +158,84 @@ def select_categorias():
     """
 
     return selectDB(BASE, query)
+
+
+def insert_ingredientes(datos_ingredientes):
+    query = """
+        INSERT INTO ingredientes
+        (nombre, id_receta, id_medida)
+        VALUES
+        (%s, %s, %s);
+    """
+
+    valores = (
+        datos_ingredientes["ingrediente"],
+        datos_ingredientes["cantidad"],
+        datos_ingredientes["medidas"],
+    )
+
+    insertDB(BASE, query, valores)
+
+
+def insert_receta(datos_receta, id_usuario):
+    query = """
+        INSERT INTO recetas
+        (nombre, fecha_publicacion, id_usuario, imagen, id_pais, pasos)
+        VALUES
+        (%s, %s, %s, %s, %s, %s);
+    """
+
+    print(datos_receta)
+
+    valores = (
+        datos_receta["nombre"],
+        datetime.now().strftime("%Y-%m-%d"),
+        id_usuario,
+        datos_receta["imagen"],
+        datos_receta["localidad"],
+        datos_receta["pasos"],
+    )
+
+    insertDB(BASE, query, valores)
+
+
+def update_usuario(id, datos_actualizados_usuario):
+    query = """
+        UPDATE usuarios SET nombre = %s, contrasena = %s, email = %s, descripcion = %s WHERE id = %s;
+    """
+
+    values = (
+        datos_actualizados_usuario["nombre"],
+        datos_actualizados_usuario["contrasena"],
+        datos_actualizados_usuario["email"],
+        datos_actualizados_usuario["descripcion"],
+        id,
+    )
+
+    updateDB(BASE, query, values)
+
+
+def select_comentarios(id):
+    query = """
+        SELECT id_usuario, contenido, usuarios.nombre nombre_usuario
+        FROM comentarios
+        INNER JOIN usuarios
+        ON id_usuario=usuarios.id
+        WHERE id_receta = %s;
+    """
+
+    values = (id,)
+    return selectDB(BASE, query, values)
+
+
+def publicar_comentario(id_receta, id_usuario, comentario):
+    query = """
+        INSERT INTO comentarios
+        (id_receta, id_usuario, contenido)
+        VALUES
+        (%s, %s, %s);
+    """
+
+    values = (id_receta, id_usuario, comentario)
+
+    insertDB(BASE, query, values)

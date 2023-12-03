@@ -21,7 +21,7 @@
     <div class="cont-c">
       {% for pais in paises %}
       <form method="post" action="/buscar" class="flex-box">
-        <input name="busqueda" value="{{pais['nombre']}}" hidden>
+        <input name="busqueda" value="{{ pais['nombre'] }}" hidden>
         <button class="fotos" type="submit">
           <img src="{{ '/static/img/paises/' + pais['imagen'] }}" />
         </button>

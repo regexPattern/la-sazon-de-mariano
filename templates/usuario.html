@@ -21,20 +21,19 @@
 
       <div class="datos">
         <span id="txt">Mi perfil</span>
-        <h1 class="nombre">Lautaro Luchetti</h1>
-        <h1 class="email">lautaroluchetti@uca.edu.ar</h1>
+        <h1 class="nombre">{{usuario['nombre']}}</h1>
+        <h1 class="email">{{usuario['email']}}</h1>
         <h1 class="descripcion">Sobre mi:</h1>
-        <h2 class="descripcion">
-          Esta es mi descripcion donde escribo cosas interesantes sobre mi
-          como mi amor por las ardillas y los unicornios,lkcm
-          vsklfmvksmfvkmkldvmskldvklsdnvkldnsfvlkdnvklnskldvnskldvnkldsfnv
-          kldfn
-        </h2>
+        <h2 class="descripcion">{{usuario['descripcion']}}</h2>
       </div>
-
+      {% if hay_sesion_activa and (hay_sesion_activa['id']==usuario['id']) %}
+      <div class="actualizar-perfil">
+        <h1><a href="/usuario/{{usuario['id']}}/update">Actualizar perfil</a></h1>
+      </div>
       <div class="nueva-receta">
         <h1><a href="/receta/crear">Nueva receta</a></h1>
       </div>
+      {% endif %}
     </div>
   </div>
 

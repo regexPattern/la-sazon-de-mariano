@@ -8,13 +8,16 @@ def inicio():
     recetas = model.select_ultimas_recetas_agregadas()
     paises = model.select_paises()
     return render_template(
-        "index.html", recetas=recetas, paises=paises, hay_sesion_activa=hay_sesion_activa()
+        "index.html",
+        recetas=recetas,
+        paises=paises,
+        hay_sesion_activa=hay_sesion_activa(),
     )
 
 
 def buscar():
     recetas = model.select_recetas_buscadas(request.form["busqueda"])
-    return render_template("buscar.html", receta=recetas)
+    return render_template("buscar.html", recetas=recetas)
 
 
 def receta(id):
@@ -42,9 +45,15 @@ def usuario(id):
 def usuario_update(id):
     nuevos_datos_usuario = {
         "nombre": request.form["nombre"],
+        "contrasena": request.form["contrasena"],
+        "email": request.form["email"],
+        "descripcion": request.form["descripcion"],
     }
 
-    model.update_usuario(id, nuevos_datos_usuario)
+    try:
+        model.update_usuario(id, nuevos_datos_usuario)
+    finally:
+        return redirect(f"/usuario/{id}")
 
 
 def signin():
@@ -93,3 +102,26 @@ def get_crear_nueva_receta():
     return render_template(
         "receta-crear.html", medidas=medidas, paises=paises, categorias=categorias
     )
+
+
+def crear_nueva_receta():
+    receta_nueva = {
+        "nombre": request.json["nombre"],
+        "imagen": request.json["imagen"],
+        "localidad": int(request.json["localidad"]),
+        "pasos": request.json["pasos"],
+    }
+
+    for ingrediente in request.json["ingredientes"]:
+        pass
+
+    id_usuario = hay_sesion_activa()["id"]
+
+    model.insert_receta(receta_nueva, id_usuario)
+    return redirect("/")
+
+
+def comentar_receta(id_receta, id_usuario):
+    comentario = request.form["contenido"]
+    model.publicar_comentario(id_receta, id_usuario, comentario)
+    return redirect(f"/receta/{id_receta}")
