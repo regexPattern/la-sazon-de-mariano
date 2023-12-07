@@ -19,7 +19,10 @@ def configurar(app):
         if request.method == "GET":
             return controller.receta(id)
         else:
-            return controller.comentar_receta(id, hay_sesion_activa()['id'])
+            if hay_sesion_activa():
+                return controller.comentar_receta(id, hay_sesion_activa()["id"])
+            else:
+                return redirect("/signin")
 
     @app.route("/receta/crear", methods=["GET", "POST"])
     def receta_crear():
