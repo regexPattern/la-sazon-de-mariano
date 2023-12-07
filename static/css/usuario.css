@@ -95,6 +95,28 @@ button:hover {
  
 }
 
+.actualizar-perfil {
+  background-color: #dbdde0;
+  border-radius: 180px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size:xx-small;
+}
+
+.actualizar-perfil a:link {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration:none;
+}
+
+.actualizar-perfil a:hover {
+  color: rgb(255, 0, 225);
+  background-color: transparent;
+  text-decoration: none;
+}
+
 .nueva-receta {
   background-color: #dbdde0;
   border-radius: 180px;
@@ -115,6 +137,19 @@ button:hover {
   color: rgb(255, 0, 225);
   background-color: transparent;
   text-decoration: none;
+}
+
+.eliminar-perfil {
+  background-color: #dbdde0;
+  border-radius: 180px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size:medium;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration:none;
 }
 
 .lista-alimentos {

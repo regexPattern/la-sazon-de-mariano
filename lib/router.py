@@ -34,9 +34,15 @@ def configurar(app):
         else:
             return controller.get_crear_nueva_receta()
 
-    @app.route("/usuario/<id>", methods=["GET", "PUT"])
+    @app.route("/usuario/<id>", methods=["GET", "POST"])
     def usuario(id):
-        return controller.usuario(id)
+        if request.method == "POST":
+            if hay_sesion_activa()['id'] == 1:
+                return controller.usuario_delete(id)
+            else:
+                return redirect("/")
+        else:
+            return controller.usuario(id)
 
     @app.route("/usuario/<id>/update", methods=["GET", "POST"])
     def usuario_update(id):

@@ -109,7 +109,7 @@ def get_crear_nueva_receta():
     paises = model.select_paises()
     categorias = model.select_categorias()
     return render_template(
-        "receta-crear.html", medidas=medidas, paises=paises, categorias=categorias
+        "receta-crear.html", medidas=medidas, paises=paises, categorias=categorias, hay_sesion_activa=hay_sesion_activa()
     )
 
 
@@ -152,3 +152,10 @@ def comentar_receta(id_receta, id_usuario):
     comentario = request.form["contenido"]
     model.publicar_comentario(id_receta, id_usuario, comentario)
     return redirect(f"/receta/{id_receta}")
+
+
+def usuario_delete(id):
+    try:
+        model.delete_usuario(id)
+    finally:
+        return redirect("/")

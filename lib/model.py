@@ -1,6 +1,6 @@
 from flask import abort
 
-from lib._mysql_db import BASE, insertDB, selectDB, updateDB
+from lib._mysql_db import BASE, insertDB, selectDB, updateDB, deleteDB
 
 
 def select_ultimas_recetas():
@@ -46,7 +46,7 @@ def select_ingredientes_receta(id):
 
 def select_usuario(id):
     query = """
-        SELECT id, nombre, imagen
+        SELECT id, nombre, imagen, descripcion, email, contrasena
         FROM usuarios
         WHERE id = %s;
     """
@@ -258,3 +258,9 @@ def update_imagen_usuario(nombre_imagen, id_usuario_insertado):
     print(values)
 
     updateDB(BASE, query, values)
+
+
+def delete_usuario(id):
+    query = """DELETE FROM usuarios WHERE id = %s;"""
+    values = (id,)
+    deleteDB(BASE, query, values)

@@ -221,7 +221,10 @@ INSERT INTO
   medidas (nombre)
 VALUES
   ('kilo'),
-  ('litro');
+  ('litro'),
+  ('gramo'),
+  ('onza'),
+  ('cucharada');
 
 INSERT INTO
   ingredientes (nombre, cantidad, id_receta, id_medida)

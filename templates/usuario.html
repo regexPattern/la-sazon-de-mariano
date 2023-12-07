@@ -34,6 +34,12 @@
         <h1><a href="/receta/crear">Nueva receta</a></h1>
       </div>
       {% endif %}
+      {% if hay_sesion_activa and (hay_sesion_activa['id']==1) and (usuario['id']!=1) %}
+      <form id="formulario-eliminar" method="post" action="/usuario/{{usuario['id']}}" class="flex-box">
+        <input name="perfil" value="{{ usuario['id'] }}" hidden>
+        <button class="eliminar-perfil" type="submit">Eliminar perfil</button>
+      </form>
+      {% endif %}
     </div>
   </div>
 
@@ -54,6 +60,7 @@
     </div>
     {% endfor %}
   </div>
+  <script src="/static/js/usuario.js"></script>
 </body>
 
 </html>
