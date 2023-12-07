@@ -1,14 +1,21 @@
-from flask import redirect, render_template, request, session
+import base64
+import os
+from datetime import datetime
+
+from flask import app, redirect, render_template, request, session
 
 import lib.model as model
 from lib.utils import hay_sesion_activa
 
 
 def inicio():
-    recetas = model.select_ultimas_recetas_agregadas()
+    recetas = model.select_ultimas_recetas()
     paises = model.select_paises()
     return render_template(
-        "index.html", recetas=recetas, paises=paises, hay_sesion_activa=hay_sesion_activa()
+        "index.html",
+        recetas=recetas,
+        paises=paises,
+        hay_sesion_activa=hay_sesion_activa(),
     )
 
 
@@ -79,17 +86,20 @@ def signin_crear_cookie():
 def signup_crear_nuevo_usuario():
     datos_nuevo_usuario = {
         "nombre": request.form["nombre"],
-        "nombre_usuario": request.form["nombre-usuario"],
+        "nombre_usuario": request.form["nombre_usuario"],
+        "descripcion": request.form["descripcion"],
         "email": request.form["email"],
         "contrasenia": request.form["contrasenia"],
-        "imagen": request.form["imagen"],
     }
 
     try:
-        model.insert_usuario(datos_nuevo_usuario)
+        id_usuario_insertado = model.insert_usuario(datos_nuevo_usuario)
+        imagen = request.files["imagen"]
+        extension = imagen.filename.split(".")[-1]
+        nombre_archivo_imagen = str(id_usuario_insertado) + "." + extension
+        model.update_imagen_usuario(nombre_archivo_imagen, id_usuario_insertado)
         return redirect("/usuario-creado")
     except:
-        # TODO: Realmente no estamos haciendo nada con este mensaje de error en la pantalla.
         params = {"error": "Error al crear el usuario"}
         return render_template("signup.html", params=params)
 
@@ -102,21 +112,40 @@ def get_crear_nueva_receta():
         "receta-crear.html", medidas=medidas, paises=paises, categorias=categorias
     )
 
-def crear_nueva_receta():
+
+def crear_nueva_receta(app):
     receta_nueva = {
-        "nombre": request.json["nombre"],
-        "imagen": request.json["imagen"],
-        "localidad": int(request.json["localidad"]),
-        "pasos": request.json["pasos"]
+        "nombre": request.form["nombre"],
+        "descripcion": request.form["pasos"],
+        "fecha_publicacion": datetime.now().strftime("%Y-%m-%d"),
+        "id_usuario": hay_sesion_activa()["id"],
+        "id_pais": int(request.form["id_pais"]),
+        "pasos": request.form["pasos"],
     }
 
-    for ingrediente in request.json["ingredientes"]: 
-        pass
+    id_receta_insertada = model.insert_receta(receta_nueva)
 
-    id_usuario = hay_sesion_activa()['id']
+    imagen = request.files["imagen"]
+    extension = imagen.filename.split(".")[-1]
+    nombre_archivo_imagen = str(id_receta_insertada) + "." + extension
+    imagen.save(os.path.join(app.config["UPLOAD_FOLDER"], "recetas", nombre_archivo_imagen))
 
-    model.insert_receta(receta_nueva,id_usuario ) 
+    model.update_imagen_receta(nombre_archivo_imagen, id_receta_insertada)
+
+    """for ingrediente in request.json["ingredientes"]:
+        datos_ingrediente = {
+            "nombre": ingrediente["ingrediente"],
+            "cantidad": ingrediente["cantidad"],
+            "id_receta": id_receta_insertada,
+            "id_medida": ingrediente["id_medida"],
+        }
+        model.insert_ingrediente(datos_ingrediente)"""
+
     return redirect("/")
+
+
+def agregar_imagen_receta():
+    request.files["imagen"]
 
 
 def comentar_receta(id_receta, id_usuario):

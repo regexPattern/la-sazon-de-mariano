@@ -22,20 +22,22 @@
 
     <div class="formulariocuenta">
 
-      <form method="get">
-        <label for="nom01">Nombre:</label><br>
-        <input type="text" name="nombre" id="nom01"><br>
-        <label for="usu01">Usuario:</label><br>
-        <input type="text" name="nombre_usuario" id="usu01"><br>
-        <label for="con01">Contraseña:</label><br>
-        <input type="password" name="contrasena" id="con01" /><br>
-        <label for="email01">Email:</label><br>
-        <input type="email" name="" id="email01"><br>
-        <label for="arch01">Agregar Imagen de Perfil:</label><br>
-        <input type="file" name="imagen" id="arch01" /><br><br>
+      <form id="formulario-signup" method="post" action="/signup" enctype="multipart/form-data">
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" name="nombre" id="nombre"><br>
+        <label for="nombre_usuario">Usuario:</label><br>
+        <input type="text" name="nombre_usuario" id="nombre_usuario"><br>
+        <label for="descripcion">Descripción:</label><br>
+        <textarea name="descripcion" id="descripcion"></textarea><br>
+        <label for="contrasenia">Contraseña:</label><br>
+        <input type="password" name="contrasenia" id="contrasenia" /><br>
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" id="email"><br>
+        <label for="imagen">Agregar Imagen de Perfil:</label><br>
+        <input type="file" name="imagen" id="imagen" /><br><br>
 
-        <label for="selLoc">Pais:</label><br>
-        <select id="selLoc" name="localidad" title="Seleccione...">
+        <label for="id_pais">Pais:</label><br>
+        <select id="id_pais" name="id_pais">
           <option value="0" disabled selected>Seleccionar..</option>
           <option value="1">Argentina</option>
           <option value="2">Brazil</option>
@@ -51,18 +53,16 @@
         <br><br>
 
         <fieldset class="condiciones">
-          <legend></legend>
-          <label for="chk01">Acepto los términos y condiciones del sitio web:</label>
-          <input type="checkbox" id="chk01" name="terminos" />
+          <label for="condiciones">Acepto los términos y condiciones del sitio web:</label>
+          <input type="checkbox" id="condiciones" name="terminos" />
         </fieldset>
 
         <div class="buttons">
-          <input type="button" id="btn" value="Crear Cuenta">
-          <input type="button" id="ayudabtn" value="Ayuda">
-          <input type="reset" id="cancelbtn" value="Cancelar">
+          <input type="submit" id="crear-cuenta-btn" value="Crear Cuenta">
+          <input type="button" id="ayuda-btn"        value="Ayuda">
+          <input type="reset"  id="cancel-btn"       value="Cancelar">
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-        <script src="/static/js/crear-cuenta.js"></script>
+        <script src="/static/js/signup.js"></script>
       </form>
     </div>
 </body>

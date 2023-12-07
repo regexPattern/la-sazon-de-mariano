@@ -1,43 +1,61 @@
-/*document.getElementsByTagName("form")[0].addEventListener("submit", (event) => {
-  event.preventDefault();
-})*/
-document.getElementById("btn").addEventListener("click", myFunction);
 document.getElementById("ayudabtn").addEventListener("click", myFunctionAyuda);
-
-function myFunction() {
-  validform = form();
-  if (validform) {
-    const jsConfetti = new JSConfetti();
-    jsConfetti.addConfetti();
-    setTimeout(() => { }, 2000);
-  }
-}
 
 function myFunctionAyuda() {
   alert("Si quieres ayuda, perdon pero no hay :(");
 }
 
-/*document.getElementsByTagName("form")[0].addEventListener("submit", (event) => {
-  event.preventDefault();
-})*/
-
-/*
 function containsNumbers(str) {
   numberYesOrNo = /\d/.test(str);
   return numberYesOrNo;
 }
 
-let recetas = [];
+var arrayIngredientes = [];
 
-function form() {
-  let nombre = document.getElementById("nom02").value;
-  let descripcion = document.getElementById("descrip").value;
-  let imagen = document.getElementById("arch02").value;
-  let pais =
-    document.getElementById("selLoc").options[
-      document.getElementById("selLoc").value
-    ].text;
-  let cond = document.getElementById("chk00");
+function agregarIngrediente() {
+  // Obtén los valores de los campos de ingrediente, cantidad y medida
+  const nombre = document.getElementById("nombre-ingrediente").value;
+  const cantidad = document.getElementById("cantidad-ingrediente").value;
+  const selectElement = document.getElementById("medida-ingrediente");
+  const selectedIndex = selectElement.selectedIndex;
+  const selectedOption = selectElement.options[selectedIndex];
+
+  const nombreMedida = selectedOption.text;
+
+  // Verifica si todos los campos tienen valores antes de agregar a la lista
+  if (nombre && cantidad && nombreMedida) {
+    const listaIngredientes = document.getElementById("listaIngredientes");
+
+    // Crea un nuevo elemento de lista para mostrar el ingrediente
+    const nuevoElementoLista = document.createElement("li");
+    nuevoElementoLista.textContent = `${nombre} - ${cantidad} ${nombreMedida}${ Number(cantidad) > 0 ? 's' : '' }`;
+
+    // Añade el nuevo elemento a la lista
+    listaIngredientes.appendChild(nuevoElementoLista);
+    arrayIngredientes.push({
+      ingrediente: nombre,
+      cantidad: cantidad,
+      id_medida: selectedOption.value,
+      nombre_medida: selectedOption.text
+    });
+
+    // Limpia los campos de ingrediente, cantidad y medida
+    document.getElementById("nombre-ingrediente").value = "";
+    document.getElementById("cantidad-ingrediente").value = "";
+    selectElement.value = 0;
+  } else {
+    alert("Por favor, completa todos los campos antes de agregar.");
+  }
+} 
+
+const form = document.getElementById("formulario-receta");
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const nombre = document.getElementById("nombre").value;
+  let pasos = document.getElementById("pasos").value;
+  let pais = document.getElementById("id_pais").selectedIndex;
+  let condiciones = document.getElementById("condiciones");
 
   let isValid = true; // Usamos esta variable para verificar si todo está válido.
 
@@ -52,81 +70,27 @@ function form() {
   }
 
   // Validación para la descripcion.
-  if (descripcion === "") {
+  if (pasos === "") {
     alert("El campo descripcion es obligatorio.");
     isValid = false;
   }
 
   // Validación para el país.
-  if (pais === "Seleccionar..") {
+  if (pais === 0) {
     alert("Debes seleccionar un país.");
     isValid = false;
   }
 
   //Validar si los condiciones son aceptadas.
-  if (!cond.checked) {
+  if (!condiciones.checked) {
     alert("Tienes que aceptar los condiciones para crear una receta!");
     isValid = false;
   }
 
-  if (isValid) {
-    let nuevaReceta = {
-      nombre: nombre,
-      descripcion: descripcion,
-      pais: pais,
-    };
-
-    recetas.push(nuevaReceta);
-    return true;
+  if (!isValid) {
+    return;
   }
-}
 
-let contadorIngredientes = 1; // Contador para identificadores únicos de ingredientes
-*/
-var arrayIngredientes = [];
-
-function agregarIngrediente() {
-  // Obtén los valores de los campos de ingrediente, cantidad y medida
-  const ingrediente = document.getElementById(`ingrediente`).value;
-  const cantidad = document.getElementById(`cantidad`).value;
-  const selectElement = document.getElementById("selQuan");
-  const selectedIndex = selectElement.selectedIndex;
-  const selectedText = selectElement.options[selectedIndex].text;
-
-  const medida = selectedText;
-
-  // Verifica si todos los campos tienen valores antes de agregar a la lista
-  if (ingrediente && cantidad && medida) {
-    const listaIngredientes = document.getElementById("listaIngredientes");
-
-    // Crea un nuevo elemento de lista para mostrar el ingrediente
-    const nuevoElementoLista = document.createElement("li");
-    nuevoElementoLista.textContent = `${ingrediente} ${cantidad} ${medida}`;
-
-    // Añade el nuevo elemento a la lista
-    listaIngredientes.appendChild(nuevoElementoLista);
-    arrayIngredientes.push({
-      ingrediente: ingrediente,
-      cantidad: cantidad,
-      medidad: selectedText,
-    });
-
-    // Incrementa el contador para el próximo ingrediente
-    contadorIngredientes++;
-
-    // Limpia los campos de ingrediente, cantidad y medida
-    document.getElementById(`ingrediente`).value = "";
-    document.getElementById(`cantidad`).value = "";
-    document.getElementById("selQuan").value = 0;
-  } else {
-    alert("Por favor, completa todos los campos antes de agregar.");
-  }
-} 
-
-const form = document.getElementsByTagName("form")[0];
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
   const formData = new FormData(form);
   const categorias = [];
 
@@ -136,20 +100,9 @@ form.addEventListener("submit", (event) => {
     }
   }
 
-  const infoReceta = {
-    nombre: formData.get("nombreplato"),
-    pasos: formData.get("recetadescrip"),
-    imagen: formData.get("archivoplato").name,
-    localidad: formData.get("localidad"),
-    categorias: categorias,
-    ingredientes: arrayIngredientes
-  };
-
-  console.log(infoReceta);
+  formData.append("ingredientes", JSON.stringify(arrayIngredientes));
 
   const request = new XMLHttpRequest(); 
-    request.open("POST", "/receta/crear"); 
-    request.setRequestHeader("Content-Type", "application/json");
-    request.send(JSON.stringify(infoReceta)); 
-
+  request.open("POST", "/receta/crear"); 
+  request.send(formData); 
 });

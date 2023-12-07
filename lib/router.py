@@ -27,7 +27,7 @@ def configurar(app):
             return redirect("/signin")
 
         if request.method == "POST":
-            return controller.crear_nueva_receta()
+            return controller.crear_nueva_receta(app)
         else:
             return controller.get_crear_nueva_receta()
 

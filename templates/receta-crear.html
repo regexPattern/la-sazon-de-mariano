@@ -22,36 +22,38 @@
 
     <div class="formularioreceta">
 
-      <form>
-        <label for="nom02">Nombre del Plato:</label><br>
-        <input type="text" name="nombreplato" id="nom02" value="aaa"><br>
+      <form id="formulario-receta" enctype="multipart/form-data">
+        <label for="nombre">Nombre del Plato:</label><br>
+        <input type="text" name="nombre" id="nombre"><br>
 
-        <label for="descrip">Instrucciones del Plato:</label><br>
-        <input type="text" name="recetadescrip" id="descrip" value="aaa"><br>
+        <label for="pasos">Instrucciones del Plato:</label><br>
+        <input type="text" name="pasos" id="pasos"><br>
 
-        <div id="inputsingredientes" class="ingredientes">
-          <label for="ingrediente">Ingrediente:</label>
-          <input type="text" name="ingredientename" id="ingrediente">
+        <div id="inputs-ingredientes" class="ingredientes">
+          <label for="nombre-ingrediente">Ingrediente:</label>
+          <input type="text" name="nombre-ingrediente" id="nombre-ingrediente">
 
-          <label for="cantidad">Cantidad:</label>
-          <input type="text" name="ingredientecant" id="cantidad">
+          <label for="cantidad-ingrediente">Cantidad:</label>
+          <input type="text" name="cantidad-ingrediente" id="cantidad-ingrediente">
 
-          <label for="selQuan">Medida:</label>
-          <select id="selQuan" name="medidas" title="Seleccione...">
+          <label for="medida-ingrediente">Medida:</label>
+          <select id="medida-ingrediente">
             <option value="0" disabled selected>Seleccionar..</option>
             {% for medida in medidas %}
-            <option value="{{medida['id']}}">{{medida['nombre']}}</option>
+              <option value="{{medida['id']}}">{{medida['nombre']}}</option>
             {% endfor %}
           </select>
 
-          <button class="agregarbutton" type="button" id="btnAgregar" onclick="agregarIngrediente()">Agregar</input>
+          <button class="agregarbutton" type="button" onclick="agregarIngrediente()">Agregar</button>
         </div>
 
-        <label for="arch02">Agregar Imagen del Plato:</label><br>
-        <input type="file" name="archivoplato" id="arch02" /><br><br>
+        <ul id="listaIngredientes"></ul>
 
-        <label for="selLoc">Pais del Origen:</label><br>
-        <select id="selLoc" name="localidad" title="Seleccione...">
+        <label for="imagen">Agregar Imagen del Plato:</label><br>
+        <input type="file" name="imagen" id="imagen" /><br><br>
+
+        <label for="id_pais">Pais del Origen:</label><br>
+        <select id="id_pais" name="id_pais">
           <option value="0" disabled selected>Seleccionar..</option>
 
           {% for pais in paises %}
@@ -74,14 +76,14 @@
 
         <fieldset class="condiciones">
           <legend></legend>
-          <input type="checkbox" id="chk00" name="terminos" />
-          <label for="chk00"> Acepto los términos y condiciones del publicación en el sitio web</label>
+          <input type="checkbox" id="condiciones" name="terminos" />
+          <label for="condiciones"> Acepto los términos y condiciones del publicación en el sitio web</label>
         </fieldset>
 
     </div>
 
     <div class="buttons">
-      <input id="btn" type="submit" value="Publicar">
+      <input type="submit" value="Publicar">
       <input id="ayudabtn" type="button" value="Ayuda">
       <input type="reset" value="Cancelar">
     </div>

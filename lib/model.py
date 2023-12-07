@@ -1,14 +1,13 @@
-from datetime import datetime
-
 from flask import abort
 
 from lib._mysql_db import BASE, insertDB, selectDB, updateDB
 
 
-def select_ultimas_recetas_agregadas():
+def select_ultimas_recetas():
     query = """
         SELECT id, nombre, imagen, descripcion
-        FROM recetas;
+        FROM recetas
+        ORDER BY fecha_publicacion ASC;
     """
 
     return selectDB(BASE, query)
@@ -34,7 +33,7 @@ def select_receta(id):
 
 def select_ingredientes_receta(id):
     query = """
-        SELECT ing.nombre nombre, med.nombre cantidad
+        SELECT ing.nombre nombre, ing.cantidad cantidad, med.nombre medida
         FROM ingredientes ing
         INNER JOIN medidas med
         ON ing.id_medida = med.id
@@ -105,32 +104,22 @@ def select_recetas_buscadas(busqueda):
 def insert_usuario(datos_usuario):
     query = """
         INSERT INTO usuarios
-        (nombre, nombre_usuario, email, contrasenia, imagen)
+        (nombre, nombre_usuario, descripcion, email, contrasena)
         VALUES
         (%s, %s, %s, %s, %s);
     """
 
     valores = (
         datos_usuario["nombre"],
-        datos_usuario["nombre-usuario"],
+        datos_usuario["nombre_usuario"],
+        datos_usuario["descripcion"],
         datos_usuario["email"],
         datos_usuario["contrasenia"],
-        datos_usuario["imagen"],
     )
 
     insertDB(BASE, query, valores)
-
-
-def update_usuario(id, datos_actualizados_usuario):
-    query = """
-        UPDATE usuarios
-        SET nombre = %s
-        WHERE id = %s;
-    """
-
-    values = (datos_actualizados_usuario["nombre"], id)
-
-    updateDB(BASE, query, values)
+    
+    return selectDB(BASE, "SELECT MAX(id) id FROM usuarios;")[0]["id"]
 
 
 def select_medidas():
@@ -160,43 +149,48 @@ def select_categorias():
     return selectDB(BASE, query)
 
 
-def insert_ingredientes(datos_ingredientes):
+def insert_ingrediente(datos_ingrediente):
     query = """
         INSERT INTO ingredientes
-        (nombre, id_receta, id_medida)
+        (nombre, cantidad, id_receta, id_medida)
         VALUES
-        (%s, %s, %s);
+        (%s, %s, %s, %s);
     """
 
     valores = (
-        datos_ingredientes["ingrediente"],
-        datos_ingredientes["cantidad"],
-        datos_ingredientes["medidas"],
+        datos_ingrediente["nombre"],
+        datos_ingrediente["cantidad"],
+        datos_ingrediente["id_receta"],
+        datos_ingrediente["id_medida"],
     )
 
     insertDB(BASE, query, valores)
 
 
-def insert_receta(datos_receta, id_usuario):
+def insert_receta(datos_receta):
     query = """
         INSERT INTO recetas
-        (nombre, fecha_publicacion, id_usuario, imagen, id_pais, pasos)
+        (nombre, descripcion, fecha_publicacion, id_usuario, id_pais, pasos)
         VALUES
         (%s, %s, %s, %s, %s, %s);
     """
 
-    print(datos_receta)
-
     valores = (
         datos_receta["nombre"],
-        datetime.now().strftime("%Y-%m-%d"),
-        id_usuario,
-        datos_receta["imagen"],
-        datos_receta["localidad"],
+        datos_receta["descripcion"],
+        datos_receta["fecha_publicacion"],
+        datos_receta["id_usuario"],
+        datos_receta["id_pais"],
         datos_receta["pasos"],
     )
 
     insertDB(BASE, query, valores)
+
+    query = """
+        SELECT MAX(id) FROM recetas;
+    """
+
+    return selectDB(BASE, query)[0]["MAX(id)"]
 
 
 def update_usuario(id, datos_actualizados_usuario):
@@ -239,3 +233,28 @@ def publicar_comentario(id_receta, id_usuario, comentario):
     values = (id_receta, id_usuario, comentario)
 
     insertDB(BASE, query, values)
+
+
+def update_imagen_receta(nombre_imagen, id_receta):
+    query = """
+        UPDATE recetas
+        SET imagen = %s
+        WHERE id = %s;
+    """
+
+    values = (nombre_imagen, id_receta)
+
+    updateDB(BASE, query, values)
+
+
+def update_imagen_usuario(nombre_imagen, id_usuario_insertado):
+    query = """
+        UPDATE usuarios
+        SET imagen = %s
+        WHERE id = %s;
+    """
+
+    values = (nombre_imagen, id_usuario_insertado)
+    print(values)
+
+    updateDB(BASE, query, values)

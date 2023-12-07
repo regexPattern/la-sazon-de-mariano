@@ -77,13 +77,16 @@ body {
 
 button:hover {
   background-color: #0056b3;
+  cursor: pointer;
 }
+
 .cont-c {
   justify-content: center;
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .flex-box {
@@ -129,7 +132,6 @@ button:hover {
 }
 
 .contenedor-recetas {
-  width: 100%;
   height: auto;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

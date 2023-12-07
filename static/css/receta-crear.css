@@ -29,7 +29,17 @@ html {
   background-size: cover;
 }
 
+.ingredientes {
+  margin-top: 12px;
+  display: flex;
+  gap: 4px;
+}
 
+.ingredientes > button {
+  font-size: 1rem;
+  background: #4ade80;
+  padding: 0px 8px;
+}
 
 .formularioreceta {
   margin: 50px;
@@ -356,3 +366,4 @@ img{
     resize: vertical;
   }
 }
+

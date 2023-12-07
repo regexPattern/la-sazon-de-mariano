@@ -67,11 +67,12 @@ def ejecutarDB(mydb,sQuery="",val=None):
             mycursor.execute(sQuery,val)
         mydb.commit()   
         res=mycursor.rowcount        # filas afectadas
+        print(mycursor._executed)
     except mysql.connector.Error as e:
         mydb.rollback()
         print("ERROR ->",e)    
     return res
-    
+
 ############################################################################
 
 
